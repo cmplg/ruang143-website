@@ -2,7 +2,8 @@
 
 Selamat datang di repositori resmi untuk website Ruang 143. Proyek ini adalah sebuah aplikasi web dinamis yang dibangun dari nol untuk mengelola komunitas kreatif, termasuk band, musisi, dan venue.
 
-![Screenshot Halaman Utama](https://ik.imagekit.io/5ifibbg7x/RUANG%20143/Screenshot%202025-09-12%20075841.png) 
+![Screenshot Halaman Utama](![Uploading {51001A02-01A0-4013-B020-D09B44BBA814}.png…]()
+) 
 *(Catatan: Ganti URL screenshot di atas dengan URL gambar screenshot halaman utama Anda jika sudah ada)*
 
 ## Fitur Utama
