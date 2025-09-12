@@ -7,42 +7,46 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <!-- Memuat Library Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body>
     <div class="background-gradient"></div>
 
     <header class="main-header">
-        <div class="header-logo">
-            <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
-        </div>
+        <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html" >HOME</a></li>
+                <li><a href="index.html">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="events.html">PLAN</a></li>
-                <li><a href="articles.html"class="active">ARTICLES</a></li>
+                <li><a href="articles.html" class="active">ARTICLES</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
                 <li><a href="login.html">MEMBER</a></li>
             </ul>
         </nav>
-        <div class="header-user-icon">
-            <a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a>
-        </div>
+        <div class="header-user-icon"><a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a></div>
     </header>
-        <main class="page-container">
-        <!-- Bagian Artikel Utama (Terbaru) -->
-        <section id="featured-article" class="featured-article-container">
-            <!-- Akan diisi oleh JavaScript -->
-            <p>Memuat artikel terbaru...</p>
+
+    <main class="page-container">
+        <!-- Struktur Baru untuk Slider Artikel Unggulan -->
+        <section class="swiper featured-article-slider">
+            <div id="featured-article-wrapper" class="swiper-wrapper">
+                <!-- Slide akan diisi oleh JavaScript -->
+                <div class="swiper-slide"><p>Memuat artikel terbaru...</p></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </section>
 
-        <hr class="form-divider">
+        <hr class="form-divider" style="margin: 50px 0;">
 
-        <!-- Daftar Artikel Lainnya -->
-        <h2>Arsip Artikel</h2>
+        <h2 class="article-list-title">Arsip Artikel</h2>
         <section id="article-grid" class="article-grid-container">
-            <!-- Akan diisi oleh JavaScript -->
-            <p>Memuat artikel lainnya...</p>
+            <p style="text-align: center;">Memuat artikel lainnya...</p>
         </section>
     </main>
     <script src="js/articles.js"></script>

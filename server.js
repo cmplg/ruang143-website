@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const { marked } = require('marked');
 
 const app = express();
 const PORT = 3000;
@@ -117,6 +118,7 @@ app.get('/api/articles/:id', (req, res) => {
     const requestedId = req.params.id;
     const article = db.articles.find(a => String(a.id) === requestedId);
     if (article) {
+        article.content = marked(article.content);
         const currentIndex = db.articles.findIndex(a => String(a.id) === requestedId);
         const prevArticle = currentIndex > 0 ? db.articles[currentIndex - 1] : null;
         const nextArticle = currentIndex < db.articles.length - 1 ? db.articles[currentIndex + 1] : null;
@@ -127,6 +129,26 @@ app.get('/api/articles/:id', (req, res) => {
     }
 });
 
+// ===================================
+// ===       API UNTUK EVENT       ===
+// ===================================
+app.post('/api/events/create', (req, res) => {
+    try {
+        const { title, date, type, imageUrl, description } = req.body;
+        if (!title || !date || !type || !description) return res.status(400).json({ message: 'Semua kolom wajib diisi.' });
+        const db = readDB();
+        const newEvent = { id: Date.now(), title, date, type, imageUrl: imageUrl || null, description };
+        if (!db.events) db.events = [];
+        db.events.push(newEvent);
+        writeDB(db);
+        res.status(201).json({ message: 'Event berhasil disimpan!' });
+    } catch (error) { res.status(500).json({ message: 'Gagal menyimpan event.' }); }
+});
+
+app.get('/api/events', (req, res) => {
+    const db = readDB();
+    res.json(db.events || []);
+});
 // Menjalankan server (WAJIB DI PALING BAWAH)
 app.listen(PORT, () => {
     console.log(`Server Ruang 143 berjalan di http://localhost:${PORT}`);

@@ -3,34 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memuat Artikel... - Ruang 143</title> <!-- Judul akan diubah oleh JS -->
+    <title>Memuat Artikel... - Ruang 143</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
-<body>
+<body class="no-scroll"> <!-- Tambahkan class no-scroll ke body -->
+
     <div class="background-gradient"></div>
+
     <header class="main-header">
-        <!-- Salin-tempel header dari index.html Anda di sini -->
-        <!-- Pastikan link ARTICLES mengarah ke articles.html -->
+        <div class="header-logo">
+            <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="events.html">PLAN</a></li>
+                <li><a href="articles.html" class="active">ARTICLES</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="login.html">MEMBER</a></li>
+            </ul>
+        </nav>
+        <div class="header-user-icon">
+            <a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a>
+        </div>
     </header>
 
-    <main class="page-container">
-        <div class="single-article-container">
-            <!-- Gambar Utama Artikel -->
-            <div id="article-image" class="single-article-image"></div>
-            
-            <!-- Judul Artikel -->
-            <h1 id="article-title">Memuat...</h1>
-            
-            <!-- Info Penulis dan Tanggal -->
-            <div id="article-meta" class="article-meta"></div>
-            
-            <hr class="form-divider">
-            
-            <!-- Konten Lengkap Artikel -->
-            <div id="article-content" class="article-body">
-                <p>Sedang memuat konten artikel...</p>
+    <!-- ============================================= -->
+    <!-- === STRUKTUR LAYOUT BARU UNTUK SCROLLING  === -->
+    <!-- ============================================= -->
+    <main class="page-container article-page-layout fixed-layout">
+        
+        <!-- Kolom Utama: Konten Artikel -->
+        <div class="single-article-main scrollable-content"> <!-- Tambahkan class scrollable -->
+            <div class="single-article-container">
+                <!-- JUDUL PINDAH KE ATAS GAMBAR -->
+                <h1 id="article-title">Memuat...</h1>
+                <div id="article-meta" class="article-meta"></div>
+                <hr class="form-divider" style="margin: 20px 0;">
+
+                <div id="article-image" class="single-article-image"></div>
+                
+                <div id="article-content" class="article-body">
+                    <p>Sedang memuat konten artikel...</p>
+                </div>
+            </div>
+
+            <div id="article-navigation" class="article-navigation">
+                <!-- Akan diisi oleh JavaScript -->
             </div>
         </div>
+
+        <!-- Kolom Samping: Sidebar -->
+        <aside class="sidebar-container">
+            <h3>Artikel Lainnya</h3>
+            <div id="sidebar-article-list" class="sidebar-scroll"> <!-- Tambahkan class scroll -->
+                <!-- Akan diisi oleh JavaScript -->
+                <p>Memuat...</p>
+            </div>
+        </aside>
+
     </main>
     <script src="js/articles.js"></script>
 </body>

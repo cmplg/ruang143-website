@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Event Baru - Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <header class="main-header">
+        <div class="header-logo"><a href="index.html">RUANG 143 ADMIN</a></div>
+        <nav class="main-nav"><ul><li><a href="events.html">LIHAT SEMUA EVENT</a></li></ul></nav>
+    </header>
+    <main class="centered-content">
+        <div class="form-container" style="max-width: 800px;">
+            <h2>Tambah Event / Rencana Baru</h2>
+            <form id="event-form">
+                <div class="form-group">
+                    <label for="title">Nama Event / Rencana</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Tanggal (YYYY-MM-DD)</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Tipe</label>
+                    <select id="type" name="type" required>
+                        <option value="past">Acara Lampau (Roadmap)</option>
+                        <option value="future">Rencana Masa Depan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">URL Gambar Flyer</label>
+                    <input type="text" id="imageUrl" name="imageUrl" placeholder="Opsional, untuk acara lampau">
+                </div>
+                <div class="form-group">
+                    <label for="description">Deskripsi Singkat</label>
+                    <textarea id="description" name="description" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Simpan Event</button>
+            </form>
+            <p id="feedback-message" class="feedback"></p>
+        </div>
+    </main>
+    <script src="js/events.js"></script>
+</body>
+</html>
