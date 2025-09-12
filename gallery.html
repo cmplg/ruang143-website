@@ -3,29 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery Activities - Ruang 143</title>
+    <title>Galeri Album - Ruang 143</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
-<body>
-    <div class="background-gradient"></div>
+<body class="gallery-page"> <!-- Class khusus untuk styling -->
 
-    <header class="main-header">
-        <div class="header-logo">
-            <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
-        </div>
+    <!-- Header dibuat transparan agar berada di atas gambar hero -->
+    <header class="main-header transparent-header">
+        <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="events.html">PLAN</a></li>
                 <li><a href="articles.html">ARTICLES</a></li>
-                <li><a href="gallery.html"class="active">GALLERY</a></li>
+                <li><a href="gallery.html" class="active">GALLERY</a></li>
                 <li><a href="login.html">MEMBER</a></li>
             </ul>
         </nav>
-        <div class="header-user-icon">
-            <a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a>
+        <div class="header-user-icon"><a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a></div>
+    </header>    
+
+    <!-- Bagian Hero dengan gambar penuh -->
+    <section class="hero-gallery">
+        <div class="hero-gallery-content">
+            <h1>Galeri Kegiatan</h1>
+            <p>Momen-momen terbaik yang tertangkap kamera dari setiap acara kami.</p>
         </div>
-    </header>
+    </section>
+
+    <!-- Kontainer untuk Grid Album -->
+    <main class="page-container">
+        <div id="album-grid" class="album-grid">
+            <p style="text-align: center;">Memuat album...</p>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <p>Copyright &copy; 2025 RUANG 143</p>
+    </footer>
+
+    <script src="js/gallery.js"></script>
+</body>
+</html>

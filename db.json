@@ -5,7 +5,7 @@
       "name": "BAHARA BAND",
       "email": "baharaband@gmail.com",
       "password": "1234",
-      "points": 25,
+      "points": null,
       "genre": "punk rock",
       "memberCount": "5",
       "address": "",
@@ -16,7 +16,7 @@
       "name": "WARKOP KAZOKU",
       "email": "kazoku@gmail.com",
       "password": "1234",
-      "points": 25,
+      "points": 35,
       "genre": null,
       "memberCount": null,
       "address": "CIATER RAYA GANG MASJID TANGSEL",
@@ -27,7 +27,7 @@
       "name": "BOLA WAKTU",
       "email": "bolawaktu@gmail.com",
       "password": "$2b$10$S6gfFe49UvvFTqOs3UU05uVqgBl2qKvLoutBKzs3g9wxaaOzN4VMa",
-      "points": 15,
+      "points": null,
       "genre": "POP ROCK",
       "memberCount": "4",
       "address": "",
@@ -38,7 +38,7 @@
       "name": "OVERDRIVE",
       "email": "overdrive@gmail.com",
       "password": "$2b$10$XGIXiTPtXQf.Kd2Iczweqe8Ci0cHnBWjxg/S5qF6zqDEHd8bcm3V2",
-      "points": 15,
+      "points": null,
       "genre": "Rock",
       "memberCount": "4",
       "address": "",
@@ -95,6 +95,117 @@
       "type": "past",
       "imageUrl": "https://picsum.photos/200/300",
       "description": "🔥 SATSET GIGS ALERT! 🔥\nRuang 143 kembali hadir dengan GIGS WARKOP SATSET 🎶\n📅 30 Agustus 2025\n📍 War.Kopitiam, Serpong – Tangsel\n\nSiap-siap nikmatin penampilan band-band kece, nongkrong bareng, dan seru-seruan sampai malam! 🚫 No Drugs, No Alcohol – cuma musik & vibes positif!\n\nStay tuned buat info line up & jadwal lengkap 🚀\n#Ruang143 #GigsSatset #WarKopitiam #LiveMusic"
+    }
+  ],
+  "albums": [
+    {
+      "id": 1757682511010,
+      "title": "test",
+      "coverImageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/471726996_122095365818712936_4105392381136282616_n.jpg?updatedAt=1757677649706",
+      "photos": []
+    },
+    {
+      "id": 1757678432888,
+      "title": "Band Komputas Ruang 143",
+      "coverImageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/471726996_122095365818712936_4105392381136282616_n.jpg?updatedAt=1757677649706",
+      "photos": [
+        {
+          "id": 1757678587008,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/dchild%20hood.jpg?updatedAt=1757677653401",
+          "caption": "Foto #1"
+        },
+        {
+          "id": 1757678587009,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/bahara.jpeg?updatedAt=1757677649346",
+          "caption": "Foto #2"
+        },
+        {
+          "id": 1757678587010,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/rockses.jpeg?updatedAt=1757677648460",
+          "caption": "Foto #3"
+        },
+        {
+          "id": 1757678587011,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/rustystrings.jpeg?updatedAt=1757677648440",
+          "caption": "Foto #4"
+        },
+        {
+          "id": 1757678587012,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/The%20Kitas.jpeg?updatedAt=1757677648378",
+          "caption": "Foto #5"
+        },
+        {
+          "id": 1757678587013,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/ragesbuvie.jpeg?updatedAt=1757677648381",
+          "caption": "Foto #6"
+        },
+        {
+          "id": 1757678587014,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/versuka.jpeg?updatedAt=1757677648196",
+          "caption": "Foto #7"
+        },
+        {
+          "id": 1757678587015,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/4days.jpeg?updatedAt=1757677648084",
+          "caption": "Foto #8"
+        },
+        {
+          "id": 1757678587016,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/picstory.jpg?updatedAt=1757677647038",
+          "caption": "Foto #9"
+        },
+        {
+          "id": 1757678587018,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/inbound7793570175077368040.png?updatedAt=1757677642964",
+          "caption": "Foto #10"
+        },
+        {
+          "id": 1757678587019,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/Logo%20OVERDRIVE%20png.png?updatedAt=1757677642529",
+          "caption": "Foto #11"
+        },
+        {
+          "id": 1757678587020,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/ginn.jpeg?updatedAt=1757677642451",
+          "caption": "Foto #12"
+        },
+        {
+          "id": 1757678587021,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/kurs.jpeg?updatedAt=1757677642391",
+          "caption": "Foto #13"
+        },
+        {
+          "id": 1757678587022,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/jkt%20gigs%20info.jpeg?updatedAt=1757677642367",
+          "caption": "Foto #14"
+        },
+        {
+          "id": 1757678587023,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/monolog.jpg?updatedAt=1757677642253",
+          "caption": "Foto #15"
+        },
+        {
+          "id": 1757678587024,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/noira.jpeg?updatedAt=1757677642202",
+          "caption": "Foto #16"
+        },
+        {
+          "id": 1757678587025,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/old%20dis.jpg?updatedAt=1757677642073",
+          "caption": "Foto #17"
+        },
+        {
+          "id": 1757678587026,
+          "imageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/mrtaxman.jpeg?updatedAt=1757677642139",
+          "caption": "Foto #18"
+        }
+      ]
+    },
+    {
+      "id": 1757677749950,
+      "title": "Anggota Grup Band di Komunitas Ruang 143",
+      "coverImageUrl": "https://ik.imagekit.io/5iflbbg7x/RUANG%20143/471726996_122095365818712936_4105392381136282616_n.jpg?updatedAt=1757677649706",
+      "photos": []
     }
   ]
 }

@@ -175,4 +175,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+        // --- LOGIKA LOGIN ADMIN ---
+    const adminLoginForm = document.getElementById('admin-login-form');
+    if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(e.target).entries());
+            const response = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            const feedbackEl = document.getElementById('feedback-message');
+            
+            if (response.ok) {
+                // Simpan "tiket" di sessionStorage (hanya berlaku selama tab browser dibuka)
+                sessionStorage.setItem('adminAuthenticated', 'true');
+                window.location.href = 'dashboard.html'; // Arahkan ke dashboard
+            } else {
+                feedbackEl.textContent = result.message;
+                feedbackEl.className = 'feedback error';
+            }
+        });
+    }
 });

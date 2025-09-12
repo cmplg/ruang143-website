@@ -3,69 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Ruang 143</title>
+    <title>Dashboard Admin - Ruang 143</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
     <div class="background-gradient"></div>
-
-    <!-- HEADER YANG SUDAH DIPERBAIKI DAN KONSISTEN -->
     <header class="main-header">
-        <div class="header-logo">
-            <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="articles.html">ARTICLES</a></li>
-            </ul>
-        </nav>
-        <div class="header-user-icon">
-            <!-- Kosongkan karena ini halaman admin -->
-        </div>
+        <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo"></a></div>
+        <nav class="main-nav"><ul><li><a href="index.html">LIHAT SITUS</a></li></ul></nav>
     </header>
 
-    <main class="centered-content">
-        <div class="form-container">
-            <h2>Panel Admin: Beri Poin Event</h2>
-            <form id="admin-form">
-                <div class="form-group">
-                    <label for="eventName">Nama Event</label>
-                    <input type="text" id="eventName" name="eventName" required placeholder="Contoh: Gigs Akustik September">
-                </div>
-                <div class="form-group">
-                    <label for="points">Poin yang Diberikan</label>
-                    <input type="number" id="points" name="points" required value="10">
-                </div>
-                
-                <hr class="form-divider" style="margin: 30px 0;">
+    <main class="dashboard-layout">
+        <!-- Sidebar Navigasi -->
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
+                <a href="#" class="dashboard-nav-item active" data-target="panel-points">Kelola Poin</a>
+                <a href="#" class="dashboard-nav-item" data-target="panel-articles">Kelola Artikel</a>
+                <a href="#" class="dashboard-nav-item" data-target="panel-events">Kelola Event</a>
+                <a href="#" class="dashboard-nav-item" data-target="panel-gallery">Kelola Galeri</a>
+            </nav>
+        </aside>
 
-                <div class="form-group">
-                    <label for="venueSelect">Pilih Venue Tuan Rumah</label>
-                    <select id="venueSelect" name="venueEmail" required>
-                        <option value="">Memuat venue...</option>
-                    </select>
+        <!-- Konten Utama Dashboard -->
+        <div class="dashboard-main">
+            <!-- ============================================= -->
+            <!-- === PANEL KELOLA POIN (KODE DIKEMBALIKAN) === -->
+            <!-- ============================================= -->
+            <div id="panel-points" class="dashboard-panel active">
+                <div class="dashboard-panel-header">
+                    <h2>Beri Poin Partisipasi Event</h2>
                 </div>
-                
-                <hr class="form-divider" style="margin: 30px 0;">
-
-                <div class="form-group">
-                    <label>Pilih Band yang Tampil</label>
-                    <div id="band-checkbox-container" class="checkbox-container">
-                        <p>Memuat band...</p>
+                <form id="points-form">
+                    <div class="form-group">
+                        <label for="points">Poin yang Diberikan per Peserta</label>
+                        <input type="number" id="points" name="points" required value="10">
                     </div>
+                    <hr class="form-divider">
+                    <div class="form-group">
+                        <label for="venueSelect">Pilih Venue Tuan Rumah</label>
+                        <select id="venueSelect" name="venueEmail" required>
+                            <option value="">Memuat venue...</option>
+                        </select>
+                    </div>
+                    <hr class="form-divider">
+                    <div class="form-group">
+                        <label>Pilih Band yang Tampil</label>
+                        <div id="band-checkbox-container" class="checkbox-container">
+                            <p>Memuat band...</p>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Beri Poin Sekarang</button>
+                    <p id="points-feedback" class="feedback"></p>
+                </form>
+            </div>
+
+            <!-- Panel Kelola Artikel -->
+            <div id="panel-articles" class="dashboard-panel">
+                <div class="dashboard-panel-header">
+                    <h2>Daftar Artikel</h2>
+                    <button class="btn btn-small" data-action="add-article">+ Tulis Artikel Baru</button>
                 </div>
-                
-                <button type="submit" class="btn">Beri Poin Sekarang</button>
-            </form>
-            <p id="feedback-message" class="feedback"></p>
+                <div id="article-list" class="item-list"></div>
+            </div>
+
+            <!-- Panel Lainnya -->
+             <div class="dashboard-panel-header">
+        <h2>Daftar Event & Rencana</h2>
+        <button class="btn btn-small" data-action="add-event">+ Tambah Event Baru</button>
+        </div>
+            <div id="event-list" class="item-list">
+                <p>Memuat event...</p>
+         </div>
+            <div id="panel-gallery" class="dashboard-panel"></div>
         </div>
     </main>
 
-    <!-- MEMANGGIL FILE JAVASCRIPT YANG BENAR -->
+    <!-- Modal Universal untuk Form CRUD -->
+    <div id="form-modal" class="modal">
+        <div class="modal-content-form">
+            <span class="close-button">&times;</span>
+            <div id="modal-form-content"></div>
+        </div>
+    </div>
+    
     <script src="js/admin.js"></script>
-
 </body>
 </html>

@@ -1,3 +1,6 @@
+// =======================================================
+// ===    KODE SERVER FINAL & LENGKAP - RUANG 143      ===
+// =======================================================
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -8,27 +11,28 @@ const app = express();
 const PORT = 3000;
 const DB_PATH = path.join(__dirname, 'db.json');
 
-// Middleware & Fungsi Database
+// Middleware & Fungsi Bantuan Database
 app.use(express.json());
 app.use(express.static(__dirname));
 
 const readDB = () => {
     try {
         if (!fs.existsSync(DB_PATH)) {
-            fs.writeFileSync(DB_PATH, JSON.stringify({ users: [], articles: [] }, null, 2));
+            const defaultData = { users: [], articles: [], events: [], albums: [] };
+            fs.writeFileSync(DB_PATH, JSON.stringify(defaultData, null, 2));
+            return defaultData;
         }
         const data = fs.readFileSync(DB_PATH, 'utf-8');
         return JSON.parse(data);
     } catch (error) {
-        console.error("Error reading or creating db.json:", error);
-        return { users: [], articles: [] };
+        console.error("Gagal membaca atau membuat db.json:", error);
+        return { users: [], articles: [], events: [], albums: [] };
     }
 };
 const writeDB = (data) => fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 
-
 // ===================================
-// === API UNTUK PENGGUNA UMUM ===
+// === API UNTUK PENGGUNA (AUTH)   ===
 // ===================================
 
 app.post('/api/register', async (req, res) => {
@@ -38,7 +42,7 @@ app.post('/api/register', async (req, res) => {
         const db = readDB();
         if (db.users.find(user => user.email === email)) return res.status(400).json({ message: 'Email sudah terdaftar!' });
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = { userType, name, email, password: hashedPassword, points: 0, ...otherData };
+        const newUser = { id: Date.now(), userType, name, email, password: hashedPassword, points: 0, ...otherData };
         if (!db.users) db.users = [];
         db.users.push(newUser);
         writeDB(db);
@@ -78,8 +82,10 @@ app.post('/api/profile/update', (req, res) => {
 });
 
 // ===================================
-// ===      API UNTUK ADMIN        ===
+// === API UNTUK ADMIN DASHBOARD   ===
 // ===================================
+
+// --- API KELOLA POIN ---
 app.get('/api/users/bands', (req, res) => { const db = readDB(); res.json(db.users.filter(user => user.userType === 'band')); });
 app.get('/api/users/venues', (req, res) => { const db = readDB(); res.json(db.users.filter(user => user.userType === 'venue')); });
 app.post('/api/award-points', (req, res) => {
@@ -89,66 +95,137 @@ app.post('/api/award-points', (req, res) => {
     if (venue) venue.points += parseInt(points);
     bandEmails.forEach(bandEmail => {
         const band = db.users.find(u => u.email === bandEmail);
-        if (band) band.points += parseInt(points);
+        if (band) band.points += parseInt(band);
     });
     writeDB(db);
     res.status(200).json({ message: `${points} poin berhasil diberikan!` });
 });
 
-// ===================================
-// ===      API UNTUK ARTIKEL      ===
-// ===================================
+// --- API CRUD ARTIKEL ---
 app.post('/api/articles/create', (req, res) => {
-    try {
-        const { title, author, imageUrl, content } = req.body;
-        if (!title || !author || !content) return res.status(400).json({ message: 'Judul, penulis, dan konten wajib diisi.' });
-        const db = readDB();
-        const newArticle = { id: Date.now(), date: new Date().toISOString(), title, author, imageUrl: imageUrl || null, content };
-        if (!db.articles) db.articles = [];
-        db.articles.unshift(newArticle);
-        writeDB(db);
-        res.status(201).json({ message: 'Artikel berhasil diterbitkan!' });
-    } catch (error) { res.status(500).json({ message: 'Gagal menerbitkan artikel.' }); }
+    const db = readDB();
+    const newArticle = { id: Date.now(), ...req.body, date: new Date().toISOString() };
+    if (!db.articles) db.articles = [];
+    db.articles.unshift(newArticle);
+    writeDB(db);
+    res.status(201).json({ message: 'Artikel berhasil dibuat!' });
 });
-
 app.get('/api/articles', (req, res) => { const db = readDB(); res.json(db.articles || []); });
-
 app.get('/api/articles/:id', (req, res) => {
     const db = readDB();
-    const requestedId = req.params.id;
-    const article = db.articles.find(a => String(a.id) === requestedId);
+    const article = db.articles.find(a => a.id == req.params.id);
     if (article) {
-        article.content = marked(article.content);
-        const currentIndex = db.articles.findIndex(a => String(a.id) === requestedId);
+        const currentIndex = db.articles.findIndex(a => a.id == req.params.id);
         const prevArticle = currentIndex > 0 ? db.articles[currentIndex - 1] : null;
         const nextArticle = currentIndex < db.articles.length - 1 ? db.articles[currentIndex + 1] : null;
-        const sidebarArticles = db.articles.filter(a => String(a.id) !== requestedId).slice(0, 5);
-        res.json({ main: article, navigation: { prev: prevArticle, next: nextArticle }, sidebar: sidebarArticles });
+        const sidebarArticles = db.articles.filter(a => a.id != req.params.id).slice(0, 5);
+        const processedArticle = { ...article, content: marked(article.content) };
+        res.json({ main: processedArticle, navigation: { prev: prevArticle, next: nextArticle }, sidebar: sidebarArticles });
+    } else { res.status(404).json({ message: 'Artikel tidak ditemukan' }); }
+});
+app.post('/api/articles/update/:id', (req, res) => {
+    const db = readDB();
+    const index = db.articles.findIndex(a => a.id == req.params.id);
+    if (index === -1) return res.status(404).json({ message: "Artikel tidak ditemukan" });
+    db.articles[index] = { ...db.articles[index], ...req.body };
+    writeDB(db);
+    res.json({ message: "Artikel berhasil diperbarui!" });
+});
+app.delete('/api/articles/delete/:id', (req, res) => {
+    let db = readDB();
+    db.articles = db.articles.filter(a => a.id != req.params.id);
+    writeDB(db);
+    res.json({ message: "Artikel berhasil dihapus!" });
+});
+
+// --- API CRUD EVENT ---
+app.post('/api/events/create', (req, res) => {
+    const db = readDB();
+    const newEvent = { id: Date.now(), ...req.body };
+    if (!db.events) db.events = [];
+    db.events.push(newEvent);
+    writeDB(db);
+    res.status(201).json({ message: 'Event berhasil disimpan!' });
+});
+app.get('/api/events', (req, res) => { const db = readDB(); res.json(db.events || []); });
+app.get('/api/events/:id', (req, res) => {
+    const db = readDB();
+    const event = db.events.find(e => e.id == req.params.id);
+    if (event) { res.json(event); } 
+    else { res.status(404).json({ message: "Event tidak ditemukan" }); }
+});
+app.post('/api/events/update/:id', (req, res) => {
+    const db = readDB();
+    const index = db.events.findIndex(e => e.id == req.params.id);
+    if (index === -1) return res.status(404).json({ message: "Event tidak ditemukan" });
+    db.events[index] = { ...db.events[index], ...req.body };
+    writeDB(db);
+    res.json({ message: "Event berhasil diperbarui!" });
+});
+app.delete('/api/events/delete/:id', (req, res) => {
+    let db = readDB();
+    db.events = db.events.filter(e => e.id != req.params.id);
+    writeDB(db);
+    res.json({ message: "Event berhasil dihapus!" });
+});
+
+// --- API CRUD GALERI ---
+app.post('/api/albums/create', (req, res) => {
+    const db = readDB();
+    const newAlbum = { id: Date.now(), ...req.body, photos: [] };
+    if (!db.albums) db.albums = [];
+    db.albums.unshift(newAlbum);
+    writeDB(db);
+    res.status(201).json({ message: 'Album berhasil dibuat!' });
+});
+app.post('/api/photos/add', (req, res) => {
+    const { albumId, imageUrls, captionPrefix } = req.body;
+    const db = readDB();
+    const albumIndex = db.albums.findIndex(a => a.id == albumId);
+    if (albumIndex === -1) return res.status(404).json({ message: 'Album tidak ditemukan.' });
+    const urls = imageUrls.split('\n').filter(url => url.trim() !== '');
+    const newPhotos = urls.map((url, i) => ({ id: Date.now() + i, imageUrl: url.trim(), caption: captionPrefix ? `${captionPrefix.trim()} #${i + 1}` : `Foto #${db.albums[albumIndex].photos.length + i + 1}` }));
+    db.albums[albumIndex].photos.unshift(...newPhotos);
+    writeDB(db);
+    res.status(201).json({ message: `${urls.length} foto berhasil ditambahkan!` });
+});
+app.get('/api/albums', (req, res) => { const db = readDB(); res.json(db.albums || []); });
+app.get('/api/albums/:id', (req, res) => {
+    const db = readDB();
+    const album = db.albums.find(a => a.id == req.params.id);
+    if (album) { res.json(album); } 
+    else { res.status(404).json({ message: 'Album tidak ditemukan' }); }
+});
+app.delete('/api/albums/delete/:id', (req, res) => {
+    let db = readDB();
+    db.albums = db.albums.filter(a => a.id != req.params.id);
+    writeDB(db);
+    res.json({ message: "Album berhasil dihapus!" });
+});
+
+// ===================================
+// ===     KONFIGURASI ADMIN       ===
+// ===================================
+const ADMIN_USERNAME = "admin143";
+const ADMIN_PASSWORD = "Ruang143_"; // GANTI DENGAN PASSWORD YANG KUAT
+
+// ... (semua API Pengguna, Artikel, Event, Galeri, dll. tetap sama) ...
+
+
+// ===================================
+// ===     API LOGIN ADMIN BARU    ===
+// ===================================
+app.post('/api/admin/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        // Login berhasil, berikan "tiket" sederhana
+        res.status(200).json({ success: true, message: 'Login berhasil!' });
     } else {
-        res.status(404).json({ message: 'Artikel tidak ditemukan.' });
+        res.status(401).json({ success: false, message: 'Username atau password salah.' });
     }
 });
 
-// ===================================
-// ===       API UNTUK EVENT       ===
-// ===================================
-app.post('/api/events/create', (req, res) => {
-    try {
-        const { title, date, type, imageUrl, description } = req.body;
-        if (!title || !date || !type || !description) return res.status(400).json({ message: 'Semua kolom wajib diisi.' });
-        const db = readDB();
-        const newEvent = { id: Date.now(), title, date, type, imageUrl: imageUrl || null, description };
-        if (!db.events) db.events = [];
-        db.events.push(newEvent);
-        writeDB(db);
-        res.status(201).json({ message: 'Event berhasil disimpan!' });
-    } catch (error) { res.status(500).json({ message: 'Gagal menyimpan event.' }); }
-});
-
-app.get('/api/events', (req, res) => {
-    const db = readDB();
-    res.json(db.events || []);
-});
 // Menjalankan server (WAJIB DI PALING BAWAH)
 app.listen(PORT, () => {
     console.log(`Server Ruang 143 berjalan di http://localhost:${PORT}`);

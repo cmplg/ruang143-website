@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album - Ruang 143</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body class="gallery-page"> <!-- Menggunakan class khusus -->
+
+    <!-- Header dibuat transparan agar berada di atas gambar hero -->
+    <header class="main-header transparent-header">
+        <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
+        <nav class="main-nav">
+             <ul>
+                <li><a href="gallery.html">KEMBALI KE SEMUA ALBUM</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Bagian Hero dengan gambar sampul album -->
+    <section id="album-hero" class="hero-gallery">
+        <div class="hero-gallery-content">
+            <h1 id="album-title">Memuat judul album...</h1>
+            <p id="photo-count">Memuat jumlah foto...</p>
+        </div>
+    </section>
+
+    <!-- Grid untuk menampilkan foto-foto di dalam album -->
+    <main id="gallery-grid" class="gallery-grid-fullwidth">
+        <p style="text-align: center; color: white; padding: 50px;">Memuat foto...</p>
+    </main>
+
+    <footer class="main-footer">
+        <p>Copyright &copy; 2025 RUANG 143</p>
+    </footer>
+
+    <!-- Modal untuk menampilkan gambar -->
+    <div id="image-modal" class="modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <div id="modal-caption" class="modal-caption"></div>
+    </div>
+
+    <script src="js/gallery.js"></script>
+</body>
+</html>

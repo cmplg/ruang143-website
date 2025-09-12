@@ -402,3 +402,293 @@ body.loaded .fade-in-right {
 
 /* Modal (Tidak Berubah) */
 .modal { display: none; position: fixed; z-index: 100; /* ... sisa styling modal ... */ }
+
+/* GANTI TOTAL BLOK CSS GALERI & ALBUM YANG LAMA DENGAN INI */
+/* ======================================================= */
+/* === HALAMAN GALERI & ALBUM (DESAIN FINAL V2)        === */
+/* ======================================================= */
+
+.gallery-page {
+    background-color: #1a1a1a;
+}
+
+/* Header Transparan (berlaku untuk kedua halaman galeri) */
+.transparent-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: transparent;
+}
+
+/* Hero Section (untuk halaman daftar album DAN detail album) */
+.hero-gallery {
+    height: 60vh;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop'); /* Gambar default, bisa diganti */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+.hero-gallery-content h1 {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+.hero-gallery-content p {
+    font-size: 18px;
+    color: #ddd;
+}
+
+/* Halaman Daftar Album (gallery.html) */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+.album-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 280px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.album-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+.album-card:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.7);
+}
+.album-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+.album-card-overlay h3 { margin: 0 0 5px 0; font-size: 22px; }
+.album-card-overlay span { font-size: 14px; color: #ccc; }
+
+/* Grid Foto Edge-to-Edge (album.html) */
+.gallery-grid-fullwidth {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 350px;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+.gallery-item-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    width: 100%;
+}
+
+/* Footer & Modal */
+.main-footer { text-align: center; padding: 30px; background-color: #111; color: #888; font-size: 14px; }
+.modal { display: none; position: fixed; z-index: 100; padding-top: 100px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+.modal-content { margin: auto; display: block; width: 80%; max-width: 700px; }
+.modal-caption { text-align: center; color: #ccc; padding: 15px 0; font-size: 16px; line-height: 1.5; }
+.modal-caption small { display: block; margin-top: 5px; font-size: 12px; color: #888; }
+.close-button { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; }
+.close-button:hover, .close-button:focus { color: #bbb; text-decoration: none; cursor: pointer; }
+
+/* Responsif */
+@media (max-width: 992px) { .gallery-grid-fullwidth { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 576px) { .gallery-grid-fullwidth { grid-template-columns: 1fr; } }
+
+/* GANTI TOTAL BLOK CSS DASHBOARD YANG LAMA DENGAN INI */
+/* =================================== */
+/* ===      DASHBOARD ADMIN        === */
+/* =================================== */
+
+.dashboard-layout {
+    display: flex;
+    max-width: 1440px;
+    margin: 40px auto;
+    gap: 40px;
+    padding: 0 20px;
+}
+.dashboard-sidebar {
+    flex-basis: 250px;
+    flex-shrink: 0;
+}
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.dashboard-nav-item {
+    color: #ccc;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.dashboard-nav-item:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+}
+.dashboard-nav-item.active {
+    background-color: #E59500;
+    color: #111;
+    border-color: #E59500;
+}
+.dashboard-main {
+    flex-grow: 1;
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+}
+.dashboard-panel {
+    display: none;
+}
+.dashboard-panel.active {
+    display: block;
+}
+.dashboard-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 20px;
+}
+.dashboard-panel-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+.btn.btn-small {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.item-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background-color 0.3s;
+}
+.item-card:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+.item-card h4 {
+    margin: 0;
+    font-weight: normal;
+}
+.item-actions {
+    display: flex;
+    gap: 10px;
+}
+.modal-content-form {
+    background: #1e1e1e;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =================================== */
+/* ===      DASHBOARD NAVIGASI     === */
+/* =================================== */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.dashboard-card {
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    border-color: #E59500;
+}
+
+.dashboard-card-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(229, 149, 0, 0.1); /* Warna oranye transparan */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-card-icon svg {
+    width: 28px;
+    height: 28px;
+    color: #E59500;
+}
+
+.dashboard-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.dashboard-card p {
+    margin: 0;
+    color: #ccc;
+    line-height: 1.6;
+}

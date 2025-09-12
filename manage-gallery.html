@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Galeri - Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <header class="main-header">
+        <div class="header-logo"><a href="index.html">RUANG 143 ADMIN</a></div>
+        <nav class="main-nav"><ul><li><a href="gallery.html">LIHAT GALERI PUBLIK</a></li></ul></nav>
+    </header>
+
+    <main class="page-container" style="display: flex; gap: 40px; align-items: flex-start;">
+        <!-- Kolom Kiri: Buat Album Baru -->
+        <div class="form-container" style="flex: 1;">
+            <h2>Buat Album Baru</h2>
+            <form id="create-album-form">
+                <div class="form-group">
+                    <label for="albumTitle">Judul Album</label>
+                    <input type="text" id="albumTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="albumCover">URL Gambar Sampul</label>
+                    <input type="text" id="albumCover" name="coverImageUrl" required placeholder="Pilih foto terbaik sebagai sampul">
+                </div>
+                <button type="submit" class="btn">Buat Album</button>
+                <p id="album-feedback" class="feedback"></p>
+            </form>
+        </div>
+
+        <!-- Kolom Kanan: Tambah Foto ke Album -->
+        <div class="form-container" style="flex: 1.5;">
+            <h2>Tambah Foto ke Album</h2>
+                <form id="add-photo-form">
+        <div class="form-group">
+            <label for="albumSelect">Pilih Album</label>
+            <select id="albumSelect" name="albumId" required>
+                <option value="">Memuat album...</option>
+            </select>
+        </div>
+        <hr class="form-divider">
+        <div class="form-group">
+            <label for="imageUrls">URL Gambar (Satu URL per baris)</label>
+            <textarea id="imageUrls" name="imageUrls" rows="8" required placeholder="https://.../gambar1.jpg&#10;https://.../gambar2.jpg&#10;https://.../gambar3.jpg"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="captionPrefix">Judul / Keterangan Umum (Opsional)</label>
+            <input type="text" id="captionPrefix" name="captionPrefix" placeholder="Contoh: Gigs di Warkop Kazoku">
+        </div>
+        <p style="font-size: 12px; color: #aaa; margin-top: -15px;">Jika diisi, setiap foto akan diberi keterangan ini diikuti nomor (Contoh: Gigs di Warkop Kazoku #1).</p>
+        
+        <button type="submit" class="btn">Tambah Foto</button>
+        <p id="photo-feedback" class="feedback"></p>
+            </form>
+        </div>
+    </main>
+    <script src="js/gallery-admin.js"></script>
+</body>
+</html>
