@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang 143 - Creative Community</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="login.html">MEMBER</a></li>
+            </ul>
+        </nav>
+        <div class="header-user-icon">
+            <a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a>
+        </div>
+    </header>
+    <main class="hero-section">
+        <div class="form-container">
+            <h2>Buat Akun Baru</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="userType">Saya mendaftar sebagai...</label>
+                    <select id="userType" name="userType" required>
+                        <option value="">-- Pilih Tipe --</option>
+                        <option value="band">Band / Musisi</option>
+                        <option value="venue">Venue (Cafe/Resto)</option>
+                    </select>
+                </div>
+
+                <div id="common-fields">
+                    <div class="form-group">
+                        <label for="name" id="name-label">Nama</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Kontak</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                </div>
+
+                <div id="band-fields" class="specific-fields">
+                    <div class="form-group">
+                        <label for="genre">Genre Musik</label>
+                        <input type="text" id="genre" name="genre">
+                    </div>
+                    <div class="form-group">
+                        <label for="memberCount">Jumlah Personel</label>
+                        <input type="number" id="memberCount" name="memberCount">
+                    </div>
+                </div>
+
+                <div id="venue-fields" class="specific-fields">
+                    <div class="form-group">
+                        <label for="address">Alamat Lengkap</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity">Kapasitas Pengunjung</label>
+                        <input type="number" id="capacity" name="capacity">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">Daftar</button>
+            </form>
+            <p id="feedback-message" class="feedback"></p>
+        </div>
+    </main>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profil - Ruang 143</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-texture"></div>
+    <header>
+<div class="logo">
+    <a href="index.html"><img src="assets/logo.png" alt="Logo Ruang 143"></a>
+</div>
+        <nav>
+            <ul>
+                <li><a href="profile.html">KEMBALI KE PROFIL</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="hero-section">
+        <div class="form-container">
+            <h2>Edit Profil</h2>
+            <form id="edit-form">
+                <!-- Tipe pengguna tidak bisa diubah, jadi kita sembunyikan -->
+                <input type="hidden" id="userType" name="userType">
+
+                <div id="common-fields">
+                    <div class="form-group">
+                        <label for="name" id="name-label">Nama</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Kontak</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div id="band-fields" class="specific-fields">
+                    <div class="form-group">
+                        <label for="genre">Genre Musik</label>
+                        <input type="text" id="genre" name="genre">
+                    </div>
+                    <div class="form-group">
+                        <label for="memberCount">Jumlah Personel</label>
+                        <input type="number" id="memberCount" name="memberCount">
+                    </div>
+                </div>
+
+                <div id="venue-fields" class="specific-fields">
+                    <div class="form-group">
+                        <label for="address">Alamat Lengkap</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity">Kapasitas Pengunjung</label>
+                        <input type="number" id="capacity" name="capacity">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">Simpan Perubahan</button>
+            </form>
+            <p id="feedback-message" class="feedback"></p>
+        </div>
+    </main>
+    <script src="js/auth.js"></script>
+</body>
+</html>

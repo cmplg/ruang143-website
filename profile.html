@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang 143 - Creative Community</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="login.html">LOGOUT</a></li>
+            </ul>
+        </nav>
+        <div class="header-user-icon">
+            <a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a>
+        </div>
+    </header>
+    <main class="hero-section">
+        <div class="profile-container">
+            <h2 id="profile-title">Profil</h2>
+            <div class="profile-info">
+                <p><strong>Nama:</strong> <span id="profile-name">Memuat...</span></p>
+                <p><strong>Email:</strong> <span id="profile-email">Memuat...</span></p>
+                
+                <!-- Area untuk informasi spesifik (akan diisi oleh JS) -->
+                <div id="profile-specific-info"></div>
+            </div>
+            <a href="edit-profile.html" class="btn">Edit Profil</a>
+            <div class="profile-points">
+                <h3>POIN ANDA</h3>
+                <p id="profile-points">0</p>
+            </div>
+        </div>
+    </main>
+    <script src="js/auth.js"></script>
+</body>
+</html>

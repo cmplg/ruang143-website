@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Artikel Baru - Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <header class="main-header">
+        <div class="header-logo"><a href="index.html">RUANG 143 ADMIN</a></div>
+        <nav class="main-nav"><ul><li><a href="articles.html">LIHAT SEMUA ARTIKEL</a></li></ul></nav>
+    </header>
+    <main class="centered-content">
+        <div class="form-container" style="max-width: 800px;">
+            <h2>Buat Artikel Baru</h2>
+            <form id="article-form">
+                <div class="form-group">
+                    <label for="title">Judul Artikel</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Penulis</label>
+                    <input type="text" id="author" name="author" required value="Ruang 143">
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">URL Gambar Utama</label>
+                    <input type="text" id="imageUrl" name="imageUrl" placeholder="Contoh: https://.../gambar.jpg">
+                </div>
+                <div class="form-group">
+                    <label for="content">Isi Artikel</label>
+                    <textarea id="content" name="content" rows="15" required></textarea>
+                </div>
+                <button type="submit" class="btn">Terbitkan Artikel</button>
+            </form>
+            <p id="feedback-message" class="feedback"></p>
+        </div>
+    </main>
+    <script src="js/articles.js"></script> <!-- Kita akan tambahkan logikanya ke main.js -->
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "userType": "band",
+      "name": "BAHARA BAND",
+      "email": "baharaband@gmail.com",
+      "password": "1234",
+      "points": 25,
+      "genre": "punk rock",
+      "memberCount": "5",
+      "address": "",
+      "capacity": ""
+    },
+    {
+      "userType": "venue",
+      "name": "WARKOP KAZOKU",
+      "email": "kazoku@gmail.com",
+      "password": "1234",
+      "points": 25,
+      "genre": null,
+      "memberCount": null,
+      "address": "CIATER RAYA GANG MASJID TANGSEL",
+      "capacity": "500"
+    },
+    {
+      "userType": "band",
+      "name": "BOLA WAKTU",
+      "email": "bolawaktu@gmail.com",
+      "password": "$2b$10$S6gfFe49UvvFTqOs3UU05uVqgBl2qKvLoutBKzs3g9wxaaOzN4VMa",
+      "points": 15,
+      "genre": "POP ROCK",
+      "memberCount": "4",
+      "address": "",
+      "capacity": ""
+    },
+    {
+      "userType": "band",
+      "name": "OVERDRIVE",
+      "email": "overdrive@gmail.com",
+      "password": "$2b$10$XGIXiTPtXQf.Kd2Iczweqe8Ci0cHnBWjxg/S5qF6zqDEHd8bcm3V2",
+      "points": 15,
+      "genre": "Rock",
+      "memberCount": "4",
+      "address": "",
+      "capacity": ""
+    }
+  ],
+  "articles": [
+    {
+      "id": 1757610501942,
+      "date": "2025-09-11T17:08:21.942Z",
+      "title": "Riset: Musik bisa mengubah cara kita mengingat kenangan masa lalu",
+      "author": "Ruang 143",
+      "imageUrl": "https://picsum.photos/200/300",
+      "content": "Pernahkah kamu menyadari bagaimana sebuah lagu bisa membangkitkan banyak kenangan atau memori di masa lalu? Mungkin lagu itu yang mengiringi dansa pertamamu, atau yang menemanimu dalam perjalanan tak terlupakan.\n\nOrang sering menganggap kenangan yang terhubung lewat musik ini sebagai potret masa lalu. Namun, penelitian terbaru kami menunjukkan bahwa musik ternyata tidak hanya membangkitkan kenangan, tetapi juga dapat mengubah cara kamu mengingat kenangan tersebut.\n\nSaya adalah peneliti psikologi di Georgia Institute of Technology. Bersama mentor saya, Thackery Brown dan para ahli musik dari University of Colorado Boulder, Sophia Mehdizadeh dan Grace Leslie, kami melakukan sebuah penelitian yang mengungkap hubungan menarik antara musik, emosi, dan memori.\n\nSecara spesifik, temuan kami mengungkapkan bahwa mendengarkan musik dapat mengubah perasaan terhadap memori lama yang masih melekat. Temuan ini berpotensi menawarkan cara baru untuk membantu orang mengatasi kenangan yang buruk di masa-masa sulit.\n\nMusik, cerita, dan kenangan\nSaat kamu mendengarkan musik, sebenarnya bukan hanya indra pendengaranmu yang terlibat. Area otak yang mengatur emosi dan ingatan juga turut aktif. Ada hippocampus, yang perannya sangat penting dalam menyimpan dan memutar kembali kenangan, serta bekerja bersama amigdala si pusat emosi otak.\n\nKeterkaitan antara pusat emosi dan memori inilah yang membuat sebuah lagu tidak hanya mudah diingat, tetapi juga terasa sangat emosional.\n\nMeskipun sudah banyak orang yang tahu bahwa musik bisa membangkitkan emosi dan memicu kenangan, kami penasaran, apakah musik juga bisa mengubah muatan emosional dari kenangan tersebut? Hipotesis kami berangkat dari konsep reaktivasi memori—gagasan bahwa kenangan bersifat lentur saat diingat kembali sehingga memungkinkan kamu menyerap informasi baru.\n\nKami merancang eksperimen selama tiga hari untuk menguji apakah saat mengingat sebuah kenangan, musik yang didengar bisa menambahkan muatan emosional baru terhadap kenangan aslinya.\n\nPada hari pertama, kami meminta peserta eksperimen menghafal cerita-cerita pendek yang secara emosional bersifat netral. Keesokan harinya, kami mengajak mereka mengingat kembali cerita-cerita tersebut sambil mendengarkan musik positif, musik negatif, ataupun keheningan. Kami juga mulai merekam aktivitas otak peserta menggunakan functional magnetic resonance imaging (fMRI), alat pemindai untuk mengukur aktivitas otak dengan mendeteksi perubahan aliran darah.\n\nDi hari terakhir, kami meminta mereka mengulang kembali cerita-cerita itu tanpa musik sama sekali.\n\nPendekatan kami mirip cara soundtrack film mengubah persepsi penonton saat melihat sebuah adegan. Dalam hal ini, kami menguji bagaimana musik dapat mengubah kenangan asli peserta terhadap sebuah kejadian.\n\nHasilnya sangat menarik. Ketika peserta mendengarkan musik emosional sembari mengingat cerita netral, mereka cenderung menambahkan elemen emosional baru yang sesuai dengan suasana musik tersebut. Misalnya, cerita netral yang didengar dengan musik positif akan diingat positif, bahkan setelah musik tersebut berhenti diputar.\n\nLebih menarik lagi, hasil pemindaian otak menunjukkan ketika peserta mengingat cerita sambil mendengarkan musik, ada peningkatan aktivitas di amigdala dan hippocampus—area otak yang mengatur pemrosesan memori emosional.\n\nJadi, tak heran jika lagu yang terkait dengan peristiwa penting dalam hidup terasa begitu merasuk. Sebab, lagu itu mengaktifkan kedua wilayah otak yang mengatur emosi dan memori kita secara bersamaan.\n\nKami juga melihat bukti kuatnya hubungan antara bagian otak yang mengolah memori emosional dengan bagian otak yang terlibat dalam pemrosesan sensoris visual. Ini menunjukkan bahwa musik mungkin bisa menyisipkan detail emosional ke dalam kenangan saat peserta membayangkan cerita-cerita tersebut secara visual.\n\nMusik bisa mengubah kenangan\nTemuan kami menunjukkan bahwa musik bertindak sebagai penghubung emosional—yang terjalin erat dengan kenangan dan secara halus mengubah bentuk perasaan terhadap memori tersebut. Kenangan ternyata lebih fleksibel daripada yang diperkirakan sebelumnya dan bisa dipengaruhi oleh bunyi-bunyi eksternal saat kamu mengingatnya kembali.\n\nMeskipun dibutuhkan penelitian lanjutan, temuan kami memiliki potensi dampak yang besar bagi kehidupan sehari-hari maupun pengobatan medis.\n\nBagi orang dengan kondisi mental, seperti depresi atau post traumatic stress disorder (PTSD)—yang sangat terbebani dengan kenangan buruk—pemilihan musik yang tepat mungkin bisa membantu mengubah cara pandang mereka terhadap memori tersebut sehingga menjadi lebih positif, seiring waktu juga berpotensi mengurangi dampak emosionalnya. Ini juga membuka peluang baru untuk menjajaki perawatan berbasis musik  dalam pengobatan depresi dan gangguan kesehatan mental lainnya.\n\nPerson wearing headphones listening to music while sitting on couch\nMusik dapat membantu mengubah kenangan negatif menjadi tidak terlalu menyakitkan. Delmaine Donson/E+ via Getty Images\nPenelitian kami juga menyoroti kuatnya pengaruh soundtrack yang kamu pilih dalam hidup. Kenangan, seperti halnya lagu favorit kamu, ternyata bisa diaransemen ulang dan disempurnakan menggunakan musik.\n\nMusik yang kamu dengarkan saat mengenang atau menjalani rutinitas harian tanpa disadari mungkin telah membentuk caramu mengingat pengalaman tertentu di masa mendatang. Jadi, ketika kamu mendengarkan playlist lagu favorit, ingat bahwa musik tersebut tidak hanya bisa memengaruhi suasana hatimu di saat itu, tapi juga kenanganmu di masa depan."
+    },
+    {
+      "id": 1757603554171,
+      "date": "2025-09-11T15:12:34.171Z",
+      "title": "Memahami Agregator: Mesin Pengumpul Konten di Era Digital",
+      "author": "Ruang 143",
+      "imageUrl": "https://picsum.photos/200/300.webp",
+      "content": "Di lautan informasi internet yang tak terbatas, menemukan konten yang relevan bisa menjadi tantangan. Di sinilah agregator berperan. Sederhananya, agregator adalah sebuah platform atau layanan yang mengumpulkan informasi dari berbagai sumber di internet dan menampilkannya di satu tempat yang terpusat.\n\nTujuannya adalah untuk memudahkan pengguna mengakses konten dari banyak sumber tanpa harus mengunjungi setiap situs satu per satu.\n\nBagaimana Cara Kerja Agregator?\n\nAgregator bekerja menggunakan teknologi yang disebut RSS (Really Simple Syndication) atau API (Application Programming Interface).\n\n    Berlangganan Sumber: Agregator \"berlangganan\" ke feed konten dari berbagai situs berita, blog, atau portal lainnya.\n\n    Mengambil Data: Setiap kali sumber tersebut menerbitkan konten baru, agregator akan secara otomatis mengambil informasi dasarnya, seperti judul, ringkasan, dan link ke artikel asli.\n\n    Menampilkan di Satu Tempat: Informasi yang terkumpul ini kemudian disajikan kepada pengguna dalam format yang rapi dan terorganisir, seringkali dikelompokkan berdasarkan topik atau sumber.\n\nContoh Agregator Populer:\n\n    Google News: Mengumpulkan berita dari ribuan portal berita di seluruh dunia.\n\n    Feedly: Sebuah RSS reader modern yang memungkinkan pengguna berlangganan ke blog dan situs favorit mereka.\n\n    Rotten Tomatoes: Mengagregasi ulasan film dari berbagai kritikus untuk menghasilkan skor \"Tomatometer\".\n\nDengan memahami agregator, kita bisa melihat bagaimana informasi diatur dan didistribusikan di dunia digital, memungkinkan kita untuk tetap terupdate dengan lebih efisien.\n\nSumber konseptual: Diadaptasi dari penjelasan di TechTarget, Wikipedia, dan Feedly."
+    }
+  ]
+}
