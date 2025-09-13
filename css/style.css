@@ -692,3 +692,75 @@ body.loaded .fade-in-right {
     color: #ccc;
     line-height: 1.6;
 }
+
+/* =================================== */
+/* === NOTIFIKASI MENGAMBANG       === */
+/* =================================== */
+
+.notification-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Pastikan selalu di atas elemen lain */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.floating-notification {
+    background-color: #E59500; /* Warna highlight oranye/emas */
+    color: #111;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    
+    /* Animasi */
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.floating-notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+/* =================================== */
+/* === FOOTER MEDIA SOSIAL         === */
+/* =================================== */
+
+.social-footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    display: flex;
+    gap: 30px; /* Jarak antar ikon */
+    z-index: 10;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}

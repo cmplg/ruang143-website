@@ -63,3 +63,46 @@ document.addEventListener('DOMContentLoaded', () => {
     revealOnScroll();
 
 });
+
+// ===================================
+// === LOGIKA NOTIFIKASI REAL-TIME ===
+// ===================================
+
+// Fungsi untuk menampilkan notifikasi
+function showFloatingNotification(message) {
+    const container = document.getElementById('notification-container');
+    if (!container) return;
+
+    // Buat elemen notifikasi baru
+    const notification = document.createElement('div');
+    notification.className = 'floating-notification';
+    notification.textContent = message;
+
+    // Tambahkan ke halaman
+    container.appendChild(notification);
+
+    // Memicu animasi masuk
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+
+    // Hapus notifikasi setelah beberapa detik
+    setTimeout(() => {
+        notification.classList.remove('show');
+        // Hapus elemen dari DOM setelah animasi keluar selesai
+        setTimeout(() => {
+            if (container.contains(notification)) {
+                container.removeChild(notification);
+            }
+        }, 500);
+    }, 5000); // Notifikasi akan hilang setelah 5 detik
+}
+
+// Inisialisasi koneksi ke server Socket.io
+const socket = io();
+
+// "Dengarkan" event 'new_post_notification' dari server
+socket.on('new_post_notification', (data) => {
+    // Panggil fungsi untuk menampilkan notifikasi dengan pesan yang diterima
+    showFloatingNotification(`${data.authorName} telah membuat postingan: "${data.postContent.substring(0, 30)}..."`);
+});

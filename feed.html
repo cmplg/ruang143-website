@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Ruang 143</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <!-- ============================================= -->
+    <!-- ===   LOGO BACKGROUND BARU DITAMBAHKAN    === -->
+    <!-- ============================================= -->
+    <div class="background-logo-container">
+        <img src="assets/logo-tengah.png" alt="Background Logo">
+    </div>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" >HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="events.html">PLAN</a></li>
+                <li><a href="articles.html">ARTICLES</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="login.html">MEMBER</a></li>
+                <li><a href="login.html"class="active">FEED</a></li>
+            </ul>
+        </nav>
+        <div class="header-user-icon">
+            <a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a>
+        </div>
+    </header>
+    <main class="page-container">
+        <div class="social-layout">
+            <!-- Kolom Kiri: Profil Singkat & Info -->
+            <aside class="social-sidebar">
+                <div id="user-profile-card">Memuat profil...</div>
+            </aside>
+
+            <!-- Kolom Utama: Form Postingan & Daftar Postingan -->
+            <div class="social-feed">
+                <!-- Form untuk membuat postingan baru -->
+                <div class="create-post-container">
+                    <h3>Buat Postingan Baru</h3>
+                    <form id="create-post-form">
+                        <textarea name="content" rows="4" placeholder="Apa yang sedang kamu pikirkan?" required></textarea>
+                        <button type="submit" class="btn">Kirim</button>
+                    </form>
+                </div>
+                <!-- Daftar Postingan -->
+                <div id="post-feed-container">
+                    <p>Memuat postingan...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/feed.js"></script>
+</body>
+</html>

@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const { marked } = require('marked');
+const io = new Server(server);
 
 const app = express();
 const PORT = 3000;
@@ -225,6 +226,41 @@ app.post('/api/admin/login', (req, res) => {
         res.status(401).json({ success: false, message: 'Username atau password salah.' });
     }
 });
+
+// API untuk membuat postingan baru
+app.post('/api/posts/create', (req, res) => {
+    const { content, userEmail } = req.body; // userEmail didapat dari localStorage di client
+    const db = readDB();
+    const author = db.users.find(u => u.email === userEmail);
+    if (!author) return res.status(404).json({ message: "Pengguna tidak ditemukan" });
+
+    const newPost = {
+        id: Date.now(),
+        authorId: author.id,
+        authorName: author.name,
+        // authorAvatar: author.avatarUrl, // Jika nanti ada fitur upload foto profil
+        content: content,
+        timestamp: new Date().toISOString(),
+        likes: [],
+        comments: []
+    };
+    db.posts.unshift(newPost);
+    writeDB(db);
+    res.status(201).json(newPost);
+});
+
+// API untuk mengambil semua postingan
+app.get('/api/posts', (req, res) => {
+    const db = readDB();
+    res.json(db.posts || []);
+});
+
+io.emit('new_post_notification', { authorName: newPost.authorName });
+
+io.on('connection', (socket) => {
+    console.log('Pengunjung baru terhubung!');
+});
+
 
 // Menjalankan server (WAJIB DI PALING BAWAH)
 app.listen(PORT, () => {
