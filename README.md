@@ -1,95 +1,134 @@
-# Website Komunitas Kreatif Ruang 143
+# Ruang 143 Website
 
-Selamat datang di repositori resmi untuk website Ruang 143. Proyek ini adalah sebuah aplikasi web dinamis yang dibangun dari nol untuk mengelola komunitas kreatif, termasuk band, musisi, dan venue.
+Welcome to the **Ruang 143 Website** repository. This project is a dynamic website designed for the Ruang 143 Creative Community. It is built using HTML, CSS, and JavaScript with a Node.js backend, and it includes multiple interactive pages and features.
 
-![Screenshot Halaman Utama](![Uploading {51001A02-01A0-4013-B020-D09B44BBA814}.png…]()
-) 
-*(Catatan: Ganti URL screenshot di atas dengan URL gambar screenshot halaman utama Anda jika sudah ada)*
+## Table of Contents
 
-## Fitur Utama
+- [Overview](#overview)
+- [Features](#features)
+- [Pages](#pages)
+- [Project Structure](#project-structure)
+- [Setup & Running](#setup--running)
+- [Contributing](#contributing)
+- [License](#license)
 
-Website ini memiliki fungsionalitas lengkap yang mencakup:
+## Overview
 
-*   **Sistem Member (Band & Venue):** Pengguna bisa mendaftar sebagai "Band/Musisi" atau "Venue", dengan kolom data yang berbeda untuk setiap tipe.
-*   **Sistem Poin:** Admin dapat memberikan poin kepada member yang berpartisipasi dalam event.
-*   **Sistem Artikel Dinamis:**
-    *   Tampilan daftar artikel modern yang terinspirasi dari portal berita, lengkap dengan slider artikel unggulan.
-    *   Halaman detail artikel dengan layout profesional (sidebar dan navigasi artikel).
-    *   Dukungan format **Markdown** untuk teks tebal, miring, gambar di tengah, dan lain-lain.
-*   **Sistem Galeri Berbasis Album:**
-    *   Admin dapat membuat album dan mengunggah banyak foto sekaligus.
-    *   Tampilan daftar album yang elegan.
-    *   Halaman detail album dengan gaya *full-width* yang imersif.
-*   **Sistem Event & Roadmap:**
-    *   Halaman interaktif yang menampilkan roadmap acara lampau dan rencana masa depan.
-    *   Layout profesional dengan sidebar dan area konten yang bisa di-scroll.
-*   **Dashboard Admin Terpusat:**
-    *   Satu halaman pusat untuk mengelola semua konten: Poin, Event, Artikel, dan Galeri.
-    *   Fungsionalitas **Tambah, Edit, dan Hapus (CRUD)** untuk setiap fitur.
-    *   Dilindungi oleh halaman **Login Admin** yang aman.
-*   **Keamanan:** Password pengguna dienkripsi menggunakan `bcrypt` untuk keamanan data.
+The Ruang 143 Website serves as an online portal for a creative community. The website offers community information, event plans, articles, galleries, and member authentication. It is designed with a modern and responsive UI that adapts to different devices.
 
-## Teknologi yang Digunakan
+## Features
 
-*   **Front-End:** HTML5, CSS3, JavaScript (Vanilla JS)
-*   **Back-End:** Node.js, Express.js
-*   **Database:** File JSON sederhana (`db.json`) sebagai database lokal.
-*   **Lainnya:** `bcrypt` untuk enkripsi, `marked` untuk parsing Markdown, `Swiper.js` untuk slider.
+- **Responsive Design:** Optimized for desktops, tablets, and mobile devices.
+- **Interactive Navigation:** Features a hamburger menu for mobile views and smooth transitions across pages.
+- **Background Effects:** Full-background shadow effects using GIFs to enhance visual appeal.
+- **User Authentication:** Login and registration functionalities with avatar support.
+- **Dynamic Content Display:** Displays articles, events (referred to as ‘PLANS’), and gallery slideshows.
+- **Admin Panel:** Includes dedicated admin pages for content management and user oversight.
+- **Animations:** Smooth animations powered by JavaScript for an enhanced user experience.
+- **Local Database:** Uses a JSON file (`db.json`) for storing data such as user details and other content.
+
+## Pages
+
+The website is composed of the following pages:
+
+- **index.html:** Home page featuring dynamic hero section, background effects, and navigation.
+- **about.html:** Provides information about the community and the website.
+- **events.html (PLANS):** Showcases upcoming events and plans.
+- **articles.html:** Displays articles relevant to the community.
+- **gallery.html:** Features a gallery of community images with slideshow functionality.
+- **feed.html:** A stream of member updates and community feed.
+- **login.html:** Member login page with enhanced visuals (includes background shadow effects).
+- **register.html:** Registration page with support for avatar input and preview.
+- **admin.html & admin-login.html:** Admin interfaces for managing website content.
+- **create-article.html & create-event.html:** Pages to create new articles and events respectively.
+- **edit-profile.html & profile.html:** User profile management pages.
+- **single-article.html:** Detailed view of a single article.
+
+## Project Structure
+
+```
+ruang143-website/
+├── about.html
+├── admin-login.html
+├── admin.html
+├── album.html
+├── articles.html
+├── create-article.html
+├── create-event.html
+├── dashboard.html
+├── db.json
+├── edit-profile.html
+├── events.html
+├── feed.html
+├── gallery.html
+├── index.html
+├── login.html
+├── manage-gallery.html
+├── profile.html
+├── register.html
+├── single-article.html
+├── assets/
+│   ├── about-image.png
+│   ├── favicon.png
+│   ├── logo-header.png
+│   ├── logo-tengah.png
+│   ├── noise-texture.png
+│   └── user-icon.png
+├── css/
+│   └── style.css
+├── js/
+│   ├── admin.js
+│   ├── animations.js
+│   ├── articles.js
+│   ├── auth.js
+│   ├── events.js
+│   ├── feed.js
+│   ├── gallery-admin.js
+│   ├── gallery.js
+│   └── hamburger.js
+├── package.json
+├── README.md
+└── server.js
+```
+
+## Setup & Running
+
+1. **Clone the Repository:**
+   ```sh
+   git clone https://github.com/cmplg/ruang143-website.git
+   cd ruang143-website
+   ```
+
+2. **Install Dependencies:**
+   Ensure you have [Node.js](https://nodejs.org/) installed, then run:
+   ```sh
+   npm install
+   ```
+
+3. **Run the Server:**
+   Start the Node.js server by executing:
+   ```sh
+   node server.js
+   ```
+   The server should be running at [http://localhost:3000](http://localhost:3000).
+
+4. **Development:**
+   You can modify HTML, CSS, and JavaScript files as needed. Use your favorite code editor and reload the browser to see changes.
+
+## Contributing
+
+Contributions are welcome! Please fork this repository and submit a pull request.
+
+1. Fork the project
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Submit a pull request
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-## Cara Menjalankan Proyek Ini Secara Lokal
-
-Untuk menjalankan proyek ini di komputer Anda, ikuti langkah-langkah berikut:
-
-### Prasyarat
-
-Pastikan Anda sudah menginstal:
-*   [Git](https://git-scm.com/downloads)
-*   [Node.js](https://nodejs.org/) (versi LTS direkomendasikan)
-
-### Instalasi & Setup
-
-1.  **Clone repositori ini:**
-    Buka terminal atau command prompt, navigasikan ke folder tempat Anda ingin menyimpan proyek, lalu jalankan:
-    ```bash
-    git clone https://github.com/cmplg/ruang143-website.git
-    ```
-
-2.  **Masuk ke direktori proyek:**
-    ```bash
-    cd ruang143-website
-    ```
-
-3.  **Install semua dependensi yang dibutuhkan:**
-    Perintah ini akan membaca `package.json` dan menginstal `express`, `bcrypt`, dll.
-    ```bash
-    npm install
-    ```
-
-### Menjalankan Server
-
-1.  Setelah instalasi selesai, jalankan server dengan perintah:
-    ```bash
-    node server.js
-    ```
-2.  Jika berhasil, Anda akan melihat pesan: `Server Ruang 143 berjalan di http://localhost:3000`
-
-### Mengakses Website
-
-*   **Situs Publik:** Buka browser dan kunjungi `http://localhost:3000`
-*   **Login Admin:** Untuk mengakses dashboard, buka `http://localhost:3000/admin-login.html`
-*   **Dashboard:** Setelah login, Anda akan diarahkan ke `http://localhost:3000/dashboard.html`
-
-### Kredensial Admin Default
-
-Kredensial untuk login admin didefinisikan langsung di dalam file `server.js`.
-
-*   **Username:** `admin143`
-*   **Password:** `passwordRahasiaAnda`
-
-> **Penting:** Ganti password default di dalam file `server.js` sebelum mempublikasikan website ini secara online.
-
----
-
-Terima kasih telah melihat proyek ini!
+*Ruang 143 Website © 2025*
