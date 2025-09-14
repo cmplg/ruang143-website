@@ -85,7 +85,6 @@
     justify-content: center;
     transition: background 0.2s;
 }
-}
 .floating-back:hover {
     background: rgba(229,149,0,0.12);
 }
@@ -112,7 +111,6 @@
 }
 .floating-top:hover {
     background: rgba(229,149,0,0.12);
-}
 }
 @media (max-width: 700px) {
     .floating-back {
