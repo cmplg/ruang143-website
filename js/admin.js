@@ -121,6 +121,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Add event listener for editing articles
+    document.querySelectorAll('.edit-article').forEach(button => {
+        button.addEventListener('click', function() {
+            const articleId = this.getAttribute('data-id');
+            // Redirect to article editing page with article id, pre-fill can be handled in that page
+            window.location.href = `create-article.html?edit=${articleId}`;
+        });
+    });
+
+    // Add event listener for editing events
+    document.querySelectorAll('.edit-event').forEach(button => {
+        button.addEventListener('click', function() {
+            const eventId = this.getAttribute('data-id');
+            // Redirect to event editing page with event id, pre-fill can be handled in that page
+            window.location.href = `create-event.html?edit=${eventId}`;
+        });
+    });
+
     // Inisialisasi: Muat semua data saat halaman dibuka
     populatePoinForm();
     loadData('article', document.getElementById('article-list'));
