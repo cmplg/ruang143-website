@@ -1408,3 +1408,23 @@ form button { background:#E59500; color:#fff; border:none; padding:8px 12px; bor
     .panel-row { flex-direction:column }
     .admin-login-bar { flex-direction:column; align-items:flex-start }
 }
+
+/* Shadow GIF full background */
+.full-background-shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/shadow.gif') no-repeat center center;  /* Updated relative path */
+    background-size: cover;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+/* Hide #nav-copyright on desktop view */
+@media (min-width: 768px) {
+  #nav-copyright {
+    display: none;
+  }
+}
