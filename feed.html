@@ -22,15 +22,20 @@
         <div class="header-logo">
             <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
         </div>
-        <nav class="main-nav">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav" id="main-nav">
             <ul>
                 <li><a href="index.html" >HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="events.html">PLAN</a></li>
+                <li><a href="events.html">Plans</a></li>
                 <li><a href="articles.html">ARTICLES</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
                 <li><a href="login.html">MEMBER</a></li>
-                <li><a href="login.html"class="active">FEED</a></li>
+                <li><a href="feed.html" class="active">FEED</a></li>
             </ul>
         </nav>
         <div class="header-user-icon">
@@ -41,7 +46,15 @@
         <div class="social-layout">
             <!-- Kolom Kiri: Profil Singkat & Info -->
             <aside class="social-sidebar">
-                <div id="user-profile-card">Memuat profil...</div>
+                <div id="user-profile-card" class="profile-container">
+                    <h2>Profil Member</h2>
+                    <div id="profile-info">Memuat data profil...</div>
+                    <div class="profile-points">
+                        <h3>Poin Komunitas</h3>
+                        <p id="profile-points">0</p>
+                    </div>
+                    <button id="logout-button" class="btn" style="margin-top:18px;width:100%;">Logout</button>
+                </div>
             </aside>
 
             <!-- Kolom Utama: Form Postingan & Daftar Postingan -->
@@ -62,5 +75,17 @@
         </div>
     </main>
     <script src="js/feed.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburger-menu');
+        var nav = document.getElementById('main-nav');
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                nav.classList.toggle('nav-open');
+                hamburger.classList.toggle('is-active');
+            });
+        }
+    });
+    </script>
 </body>
 </html>

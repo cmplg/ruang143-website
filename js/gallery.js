@@ -5,16 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/api/albums')
             .then(res => res.json())
             .then(albums => {
-                if (albums.length > 0) {
-                    albumGrid.innerHTML = albums.map(album => `
+                if (Array.isArray(albums) && albums.length > 0) {
+                    albumGrid.innerHTML = albums.map(album => {
+                        const photoCount = Array.isArray(album.photos) ? album.photos.length : 0;
+                        return `
                         <a href="album.html?id=${album.id}" class="album-card">
                             <img src="${album.coverImageUrl}" alt="${album.title}">
                             <div class="album-card-overlay">
                                 <h3>${album.title}</h3>
-                                <span>${album.photos.length} Foto</span>
+                                <span>${photoCount} Foto</span>
                             </div>
                         </a>
-                    `).join('');
+                        `;
+                    }).join('');
                 } else {
                     albumGrid.innerHTML = '<p style="text-align: center;">Belum ada album di galeri.</p>';
                 }
@@ -73,5 +76,27 @@ if (galleryGridFullwidth) {
         
         if(closeBtn) { closeBtn.onclick = function() { modal.style.display = "none"; } }
         window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
+    }
+
+    // --- SLIDESHOW HERO SECTION ---
+    const heroSection = document.querySelector('.hero-gallery');
+    if (heroSection) {
+        fetch('/api/albums')
+            .then(res => res.json())
+            .then(albums => {
+                const images = albums.map(album => album.coverImageUrl);
+                if (images.length > 0) {
+                    if (images.length === 1) {
+                        heroSection.style.backgroundImage = `url('${images[0]}')`;
+                    } else {
+                        let currentIndex = 0;
+                        heroSection.style.backgroundImage = `url('${images[0]}')`;
+                        setInterval(() => {
+                            currentIndex = (currentIndex + 1) % images.length;
+                            heroSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+                        }, 5000);
+                    }
+                }
+            });
     }
 });

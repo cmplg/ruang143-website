@@ -13,18 +13,33 @@
     <!-- Header dibuat transparan agar berada di atas gambar hero -->
     <header class="main-header transparent-header">
         <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
-        <nav class="main-nav">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav" id="main-nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="events.html">PLAN</a></li>
+                <li><a href="events.html">Plans</a></li>
                 <li><a href="articles.html">ARTICLES</a></li>
                 <li><a href="gallery.html" class="active">GALLERY</a></li>
+                <li><a href="feed.html">FEED</a></li>
                 <li><a href="login.html">MEMBER</a></li>
             </ul>
         </nav>
-        <div class="header-user-icon"><a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a></div>
-    </header>    
+        <div class="header-user-icon">
+            <div class="profile-menu-container">
+                <img src="assets/user-icon.png" alt="Member Area" id="profile-icon" style="cursor:pointer;">
+                <div class="profile-dropdown" id="profile-dropdown" style="display:none;">
+                    <a href="login.html" id="login-menu">Login</a>
+                    <a href="feed.html" id="profile-menu" style="display:none;">Profile</a>
+                    <a href="#" id="logout-menu" style="display:none;">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- Bagian Hero dengan gambar penuh -->
     <section class="hero-gallery">
@@ -46,5 +61,44 @@
     </footer>
 
     <script src="js/gallery.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hamburger.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var profileIcon = document.getElementById('profile-icon');
+        var profileDropdown = document.getElementById('profile-dropdown');
+        if (profileIcon && profileDropdown) {
+            profileIcon.addEventListener('click', function(e) {
+                profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+                e.stopPropagation();
+            });
+            document.body.addEventListener('click', function() {
+                profileDropdown.style.display = 'none';
+            });
+        }
+        function updateProfileMenu() {
+            var loggedIn = localStorage.getItem('loggedInUser');
+            var loginMenu = document.getElementById('login-menu');
+            var profileMenu = document.getElementById('profile-menu');
+            var logoutMenu = document.getElementById('logout-menu');
+            if (loginMenu) loginMenu.style.display = loggedIn ? 'none' : 'block';
+            if (profileMenu) profileMenu.style.display = loggedIn ? 'block' : 'none';
+            if (logoutMenu) logoutMenu.style.display = loggedIn ? 'block' : 'none';
+        }
+        updateProfileMenu();
+        var logoutMenuBtn = document.getElementById('logout-menu');
+        if (logoutMenuBtn) {
+            logoutMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                updateProfileMenu();
+                window.location.href = 'login.html';
+            });
+        }
+        window.addEventListener('storage', updateProfileMenu);
+    });
+    </script>
+    <script>
+    </script>
 </body>
 </html>

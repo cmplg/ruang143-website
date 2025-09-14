@@ -8,42 +8,101 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
-<body class="no-scroll">
+<body>
 
     <div class="background-gradient"></div>
 
     <header class="main-header">
         <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
-        <nav class="main-nav">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav" id="main-nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="events.html" class="active">PLAN</a></li>
+                <li><a href="events.html" class="active">Plans</a></li>
                 <li><a href="articles.html">ARTICLES</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="feed.html">FEED</a></li>
                 <li><a href="login.html">MEMBER</a></li>
             </ul>
         </nav>
-        <div class="header-user-icon"><a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a></div>
-    </header>    
-
-    <main class="page-container fixed-layout-events">
-        <aside class="sidebar-container fixed-sidebar">
-            <h3>Rencana Kedepan</h3>
-            <div id="future-plans-container" class="sidebar-scroll">
-                <p>Memuat rencana...</p>
-            </div>
-        </aside>
-
-        <div class="main-content-events scrollable-content">
-            <h2 class="section-title" style="text-align: left; margin-top: 0;"><span>Roadmap Event</span></h2>
-            <div id="roadmap-container" class="roadmap-timeline"> <!-- Kembali ke gaya timeline kiri-kanan -->
-                <p>Memuat roadmap...</p>
+        <div class="header-user-icon">
+            <div class="profile-menu-container">
+                <img src="assets/user-icon.png" alt="Member Area" id="profile-icon" style="cursor:pointer;">
+                <div class="profile-dropdown" id="profile-dropdown" style="display:none;">
+                    <a href="login.html" id="login-menu">Login</a>
+                    <a href="feed.html" id="profile-menu" style="display:none;">Profile</a>
+                    <a href="#" id="logout-menu" style="display:none;">Logout</a>
+                </div>
             </div>
         </div>
+    </header>
+
+    <main class="page-container fixed-layout-events">
+        <section class="mobile-plan-section" id="future-plans-section">
+            <h3 class="plan-title">Future Events</h3>
+            <div id="future-plans-container" class="plan-list future-list">
+                <p>Memuat rencana...</p>
+            </div>
+        </section>
+        <section class="mobile-plan-section" id="past-plans-section">
+            <h3 class="plan-title">Past Events</h3>
+            <div id="roadmap-container" class="plan-list past-list">
+                <p>Memuat roadmap...</p>
+            </div>
+        </section>
     </main>
     
     <div id="image-modal" class="modal"><span class="close-button">&times;</span><img class="modal-content" id="modal-image"></div>
     <script src="js/events.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+    // Gabungan script hamburger & profile menu
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburger-menu');
+        var nav = document.getElementById('main-nav');
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                nav.classList.toggle('nav-open');
+                hamburger.classList.toggle('is-active');
+            });
+        }
+        var profileIcon = document.getElementById('profile-icon');
+        var profileDropdown = document.getElementById('profile-dropdown');
+        if (profileIcon && profileDropdown) {
+            profileIcon.addEventListener('click', function(e) {
+                profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+                e.stopPropagation();
+            });
+            document.body.addEventListener('click', function() {
+                profileDropdown.style.display = 'none';
+            });
+        }
+        function updateProfileMenu() {
+            var loggedIn = localStorage.getItem('loggedInUser');
+            var loginMenu = document.getElementById('login-menu');
+            var profileMenu = document.getElementById('profile-menu');
+            var logoutMenu = document.getElementById('logout-menu');
+            if (loginMenu) loginMenu.style.display = loggedIn ? 'none' : 'block';
+            if (profileMenu) profileMenu.style.display = loggedIn ? 'block' : 'none';
+            if (logoutMenu) logoutMenu.style.display = loggedIn ? 'block' : 'none';
+        }
+        updateProfileMenu();
+        var logoutMenuBtn = document.getElementById('logout-menu');
+        if (logoutMenuBtn) {
+            logoutMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                updateProfileMenu();
+                window.location.href = 'login.html';
+            });
+        }
+        window.addEventListener('storage', updateProfileMenu);
+    });
+    </script>
 </body>
 </html>

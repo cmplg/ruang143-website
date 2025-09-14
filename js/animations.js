@@ -98,11 +98,3 @@ function showFloatingNotification(message) {
     }, 5000); // Notifikasi akan hilang setelah 5 detik
 }
 
-// Inisialisasi koneksi ke server Socket.io
-const socket = io();
-
-// "Dengarkan" event 'new_post_notification' dari server
-socket.on('new_post_notification', (data) => {
-    // Panggil fungsi untuk menampilkan notifikasi dengan pesan yang diterima
-    showFloatingNotification(`${data.authorName} telah membuat postingan: "${data.postContent.substring(0, 30)}..."`);
-});

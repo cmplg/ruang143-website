@@ -23,39 +23,94 @@
         <div class="header-logo">
             <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
         </div>
-        <nav class="main-nav">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav" id="main-nav">
             <ul>
                 <li><a href="index.html" class="active">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="events.html">PLAN</a></li>
+                <li><a href="events.html">Plans</a></li>
                 <li><a href="articles.html">ARTICLES</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="feed.html">FEED</a></li>
                 <li><a href="login.html">MEMBER</a></li>
             </ul>
         </nav>
         <div class="header-user-icon">
-            <a href="login.html"><img src="assets/user-icon.png" alt="Member Area"></a>
+            <div class="profile-menu-container">
+                <img src="assets/user-icon.png" alt="Member Area" id="profile-icon" style="cursor:pointer;">
+                <div class="profile-dropdown" id="profile-dropdown" style="display:none;">
+                    <a href="login.html" id="login-menu">Login</a>
+                    <a href="feed.html" id="profile-menu" style="display:none;">Profile</a>
+                    <a href="#" id="logout-menu" style="display:none;">Logout</a>
+                </div>
+            </div>
         </div>
     </header>
 
+    <!-- =========================== -->
+    <!-- Modified Hero Section with background shadow GIF and tightened letter spacing -->
     <main class="hero-section"> 
+        <div class="background-shadow">
+            <img src="assets/shadow.gif" alt="Shadow Background">
+        </div>
         <div class="hero-left fade-in-left">
             <img src="assets/logo-tengah.png" alt="Ruang 143 Creative Community">
         </div>
         <div class="hero-right fade-in-right">
-            <h1>RUANG 143</h1>
+            <h1><span class="tight-spacing">RUANG</span> 143</h1>
             <p>Bergabung bersama komunitas kami.</p>
             <a href="register.html" class="btn">Daftar</a>
         </div>
     </main>
-        <!-- === TAMBAHKAN BARIS INI === -->
-    <script src="/socket.io/socket.io.js"></script>
     <!-- =========================== -->
+    <!-- === TAMBAHKAN BARIS INI === -->
     <!-- Memanggil file JS untuk animasi -->
     <script src="js/animations.js"></script>
-        <!-- ============================================= -->
-    <!-- ===   IKON MEDIA SOSIAL DITAMBAHKAN       === -->
-    <!-- ============================================= -->
+    <script src="js/auth.js"></script>
+    <script src="js/hamburger.js"></script>
+    <script>
+    // Hamburger & Profile menu logic
+    document.addEventListener('DOMContentLoaded', function() {
+        // Global hamburger functionality is handled by js/hamburger.js
+
+        var profileIcon = document.getElementById('profile-icon');
+        var profileDropdown = document.getElementById('profile-dropdown');
+        if (profileIcon && profileDropdown) {
+            profileIcon.addEventListener('click', function(e) {
+                profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+                e.stopPropagation();
+            });
+            document.body.addEventListener('click', function() {
+                profileDropdown.style.display = 'none';
+            });
+        }
+        
+        function updateProfileMenu() {
+            var loggedIn = localStorage.getItem('loggedInUser');
+            var loginMenu = document.getElementById('login-menu');
+            var profileMenu = document.getElementById('profile-menu');
+            var logoutMenu = document.getElementById('logout-menu');
+            if (loginMenu) loginMenu.style.display = loggedIn ? 'none' : 'block';
+            if (profileMenu) profileMenu.style.display = loggedIn ? 'block' : 'none';
+            if (logoutMenu) logoutMenu.style.display = loggedIn ? 'block' : 'none';
+        }
+        updateProfileMenu();
+        var logoutMenuBtn = document.getElementById('logout-menu');
+        if (logoutMenuBtn) {
+            logoutMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                updateProfileMenu();
+                window.location.href = 'login.html';
+            });
+        }
+        window.addEventListener('storage', updateProfileMenu);
+    });
+    </script>
     <footer class="social-footer">
         <a href="https://instagram.com/ruang_143" target="_blank" class="social-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>

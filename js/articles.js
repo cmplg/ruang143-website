@@ -23,15 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const featuredWrapper = document.getElementById('featured-article-wrapper');
     const gridContainer = document.getElementById('article-grid');
     if (featuredWrapper && gridContainer) {
+        // show lightweight skeletons while loading
+        gridContainer.innerHTML = Array.from({length:3}).map(()=>`<div class="article-skeleton"><div class="s-img"></div><div class="s-lines"><div></div><div></div></div></div>`).join('');
         fetch('/api/articles')
             .then(res => res.json())
             .then(articles => {
                 const articleListTitle = document.querySelector('.article-list-title');
-                if (articles.length === 0) {
+                if (!articles || articles.length === 0) {
                     const sliderElement = document.querySelector('.featured-article-slider');
-                    if(sliderElement) sliderElement.innerHTML = '<h2>Belum ada artikel.</h2>';
-                    gridContainer.innerHTML = '';
-                    if(articleListTitle) articleListTitle.style.display = 'none';
+                    if (sliderElement) sliderElement.innerHTML = '<div class="no-articles"><h2>Belum ada artikel.</h2><p>Cek kembali nanti.</p></div>';
+                    gridContainer.innerHTML = '<p style="text-align:center;">Belum ada artikel untuk ditampilkan.</p>';
+                    if (articleListTitle) articleListTitle.style.display = 'none';
                     return;
                 }
 
@@ -40,9 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // --- Bangun Slide untuk Artikel Unggulan ---
                 featuredWrapper.innerHTML = featuredArticles.map(featured => `
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" role="group" aria-label="Artikel: ${featured.title}">
                         <a href="single-article.html?id=${featured.id}" class="featured-article-link">
-                            <img src="${featured.imageUrl || 'https://via.placeholder.com/1200x600.png?text=Gambar+Utama'}" alt="${featured.title}">
+                            <img loading="lazy" src="${featured.imageUrl || 'https://via.placeholder.com/1200x600.png?text=Gambar+Utama'}" alt="${featured.title}">
                             <div class="featured-article-content">
                                 <span class="article-date">${new Date(featured.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                                 <h1>${featured.title}</h1>
@@ -51,25 +53,45 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `).join('');
 
-                // Inisialisasi Slider
-                new Swiper('.featured-article-slider', {
-                    loop: true,
-                    autoplay: { delay: 4000, disableOnInteraction: false },
-                    pagination: { el: '.swiper-pagination', clickable: true },
-                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-                });
+                // Inisialisasi Slider (guard jika Swiper belum tersedia)
+                try {
+                    if (typeof Swiper !== 'undefined') {
+                        const sliderEl = document.querySelector('.featured-article-slider');
+                        const hasSlides = sliderEl && sliderEl.querySelectorAll('.swiper-slide').length > 0;
+                        if (hasSlides) {
+                            new Swiper('.featured-article-slider', {
+                                loop: true,
+                                autoplay: { delay: 4000, disableOnInteraction: false },
+                                pagination: { el: '.swiper-pagination', clickable: true },
+                                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                            });
+                            console.log('Swiper initialized for featured-article-slider');
+                        } else {
+                            console.warn('No slides found for featured-article-slider');
+                        }
+                    } else {
+                        console.warn('Swiper library not loaded; featured slider skipped');
+                    }
+                } catch (e) {
+                    console.error('Error initializing Swiper:', e);
+                }
 
                 // --- Tampilkan SEMUA artikel di grid di bawah ---
                 if (articleListTitle) articleListTitle.style.display = 'block';
                 gridContainer.innerHTML = articles.map(article => `
                     <a href="single-article.html?id=${article.id}" class="article-card">
-                        <img src="${article.imageUrl || 'https://via.placeholder.com/400x200.png?text=Gambar'}" alt="${article.title}">
+                        <img loading="lazy" src="${article.imageUrl || 'https://via.placeholder.com/400x200.png?text=Gambar+Artikel'}" alt="${article.title}">
                         <div class="article-card-content">
                             <h3>${article.title}</h3>
                             <span class="article-date">${new Date(article.date).toLocaleDateString('id-ID')}</span>
                         </div>
                     </a>
                 `).join('');
+            }).catch(err => {
+                console.error('Failed to load articles', err);
+                const sliderElement = document.querySelector('.featured-article-slider');
+                if (sliderElement) sliderElement.innerHTML = '<div class="no-articles"><h2>Gagal memuat artikel.</h2><p>Periksa koneksi atau coba lagi nanti.</p></div>';
+                gridContainer.innerHTML = '<p style="text-align:center;color:#ddd;">Gagal memuat artikel. Silakan muat ulang.</p>';
             });
     }
 

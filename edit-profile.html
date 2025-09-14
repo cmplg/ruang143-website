@@ -16,7 +16,7 @@
 </div>
         <nav>
             <ul>
-                <li><a href="profile.html">KEMBALI KE PROFIL</a></li>
+                <li><a href="feed.html">KEMBALI KE PROFIL</a></li>
             </ul>
         </nav>
     </header>
@@ -35,6 +35,11 @@
                     <div class="form-group">
                         <label for="email">Email Kontak</label>
                         <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="avatarUrl">URL Foto Profil (opsional)</label>
+                        <input type="url" id="avatarUrl" name="avatarUrl" placeholder="https://example.com/me.jpg">
+                        <div id="avatar-preview" style="margin-top:8px;display:none;"><img id="avatar-preview-img" src="" alt="Preview" style="max-width:120px;border-radius:50%;border:2px solid #eee;"/></div>
                     </div>
                 </div>
 
@@ -66,5 +71,16 @@
         </div>
     </main>
     <script src="js/auth.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const avInput = document.getElementById('avatarUrl');
+        const avWrap = document.getElementById('avatar-preview');
+        const avImg = document.getElementById('avatar-preview-img');
+        if (avInput) avInput.addEventListener('input', function(){
+            const v = this.value.trim();
+            if (v) { avImg.src = v; avWrap.style.display='block'; } else { avImg.src=''; avWrap.style.display='none'; }
+        });
+    });
+    </script>
 </body>
 </html>

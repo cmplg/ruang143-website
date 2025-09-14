@@ -13,11 +13,18 @@
 
     <header class="main-header">
         <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
-        <nav class="main-nav">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav" id="main-nav">
             <ul>
                 <li><a href="index.html">LIHAT SITUS PUBLIK</a></li>
             </ul>
         </nav>
+        <div class="header-user-icon">
+        </div>
     </header>
 
     <main class="page-container">
@@ -26,47 +33,435 @@
             <p>Pilih salah satu menu di bawah ini untuk mengelola konten website.</p>
         </div>
 
-        <!-- Grid untuk Tombol Navigasi Dashboard -->
-        <div class="dashboard-grid">
-            
-            <!-- Tombol Kelola Poin -->
-            <a href="admin.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <div class="admin-panel">
+            <div class="admin-login-bar">
+                <label for="admin-pass-input">Admin Token:</label>
+                <input id="admin-pass-input" type="password" placeholder="Masukkan admin token (Ruang143_)" />
+                <button id="admin-save-btn">Simpan Token</button>
+                <button id="admin-clear-btn">Hapus Token</button>
+                <span id="admin-status" style="margin-left:12px;color:#666"></span>
+            </div>
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="members">Members</button>
+                <button class="tab-btn" data-tab="articles">Articles</button>
+                <button class="tab-btn" data-tab="gallery">Gallery</button>
+                <button class="tab-btn" data-tab="events">Events</button>
+                <button class="tab-btn" data-tab="posts">Posts</button>
+            </div>
+            <div class="admin-contents">
+                <div class="admin-tab" id="tab-members">
+                    <div class="panel-row">
+                        <div class="panel-col">
+                            <h3>Members</h3>
+                            <p>Daftar members. Klik <strong>Hapus</strong> untuk menghapus member atau gunakan <strong>Tambah Poin</strong> untuk menambahkan poin.</p>
+                        </div>
+                    </div>
+                    <div style="margin:8px 0;">
+                        <button id="bulk-add-points">Tambah Poin ke Member Terpilih</button>
+                        <input id="bulk-points-value" type="number" value="10" style="width:80px;margin-left:8px;" />
+                    </div>
+                    <div id="members-list"></div>
                 </div>
-                <h3>Kelola Poin Event</h3>
-                <p>Beri poin untuk Band dan Venue yang berpartisipasi dalam event.</p>
-            </a>
-            
-            <!-- Tombol Kelola Event -->
-            <a href="create-event.html" class="dashboard-card">
-                 <div class="dashboard-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
-                </div>
-                <h3>Kelola Event & Plan</h3>
-                <p>Tambah acara lampau (roadmap) dan rencana masa depan.</p>
-            </a>
 
-            <!-- Tombol Kelola Artikel -->
-            <a href="create-article.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <div class="admin-tab" id="tab-articles" style="display:none;">
+                    <div class="panel-row">
+                        <div class="panel-col">
+                            <h3>Buat Artikel Baru</h3>
+                            <form id="create-article-form">
+                                <input name="title" placeholder="Judul artikel" required />
+                                <input name="summary" placeholder="Ringkasan (optional)" />
+                                <input name="imageUrls" placeholder="Image URLs (satu per baris) - akan disisipkan di konten jika mau" />
+                                <input name="source" placeholder="Sumber (optional)" />
+                                <input name="publishDate" placeholder="Tanggal rilis (YYYY-MM-DD) - kosong = sekarang" />
+                                <textarea name="content" placeholder="Isi artikel (Markdown). Gunakan Markdown untuk *italic*, **bold**, dll." required></textarea>
+                                <button type="submit">Buat Artikel</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="articles-list"></div>
                 </div>
-                <h3>Kelola Artikel</h3>
-                <p>Tulis, edit, atau hapus artikel berita dan informasi komunitas.</p>
-            </a>
 
-            <!-- Tombol Kelola Galeri -->
-            <a href="manage-gallery.html" class="dashboard-card">
-                 <div class="dashboard-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
+                <div class="admin-tab" id="tab-gallery" style="display:none;">
+                    <div class="panel-row">
+                        <div class="panel-col">
+                            <h3>Buat Album Baru</h3>
+                            <form id="create-album-form">
+                                <input name="title" placeholder="Judul album" required />
+                                <input name="description" placeholder="Deskripsi (optional)" />
+                                <button type="submit">Buat Album</button>
+                            </form>
+                        </div>
+                        <div class="panel-col">
+                            <h3>Tambah Foto ke Album</h3>
+                            <form id="add-photos-form">
+                                <input name="albumId" placeholder="Album ID" required />
+                                <div id="photo-rows">
+                                    <div class="photo-row">
+                                        <input name="imageUrl" placeholder="Image URL" />
+                                        <input name="caption" placeholder="Caption (optional)" />
+                                    </div>
+                                </div>
+                                <button type="button" id="add-photo-row">Tambah Kolom Foto</button>
+                                <button type="submit">Tambah Foto</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="albums-list"></div>
                 </div>
-                <h3>Kelola Galeri</h3>
-                <p>Buat album baru dan tambahkan banyak foto sekaligus.</p>
-            </a>
 
+                <div class="admin-tab" id="tab-events" style="display:none;">
+                    <div class="panel-row">
+                        <div class="panel-col">
+                            <h3>Buat Event/Plan</h3>
+                            <form id="create-event-form">
+                                <input name="title" placeholder="Judul event" required />
+                                <input name="date" placeholder="Tanggal (YYYY-MM-DD)" />
+                                <input name="location" placeholder="Lokasi" />
+                                <input name="imageUrl" placeholder="URL Gambar (opsional) - flyer atau poster" />
+                                <div id="event-image-preview" style="margin-top:8px;display:none;">
+                                    <img id="event-image-preview-img" src="" alt="Preview Gambar Event" style="max-width:240px;max-height:160px;border-radius:6px;border:1px solid #ddd;" />
+                                </div>
+                                <textarea name="description" placeholder="Deskripsi"></textarea>
+                                <button type="submit">Buat Event</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="events-list"></div>
+                </div>
+
+                <div class="admin-tab" id="tab-posts" style="display:none;">
+                    <div class="panel-row">
+                        <div class="panel-col">
+                            <h3>Postingan</h3>
+                            <p>Daftar postingan. Hapus posting jika perlu.</p>
+                        </div>
+                    </div>
+                    <div id="posts-list"></div>
+                </div>
+            </div>
         </div>
     </main>
+    <script src="js/auth.js"></script>
+    <script src="js/hamburger.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburger-menu');
+        var nav = document.getElementById('main-nav');
+        // create overlay for mobile nav clicks outside
+        var navOverlay = document.createElement('div'); navOverlay.className = 'nav-overlay'; document.body.appendChild(navOverlay);
+        if (hamburger && nav) {
+            // safe attach inside DOMContentLoaded
+            hamburger.addEventListener('click', function() {
+                nav.classList.toggle('nav-open');
+                hamburger.classList.toggle('is-active');
+                // toggle overlay visibility
+                if (nav.classList.contains('nav-open')) navOverlay.classList.add('visible'); else navOverlay.classList.remove('visible');
+            });
+            // Close nav when a nav link is clicked (mobile behavior)
+            try {
+                const navLinks = nav.querySelectorAll('a');
+                navLinks.forEach(link => link.addEventListener('click', function(){
+                    nav.classList.remove('nav-open');
+                    hamburger.classList.remove('is-active');
+                    navOverlay.classList.remove('visible');
+                }));
+            } catch(e) { /* ignore if nav not present */ }
+        }
+        // click outside (overlay) closes nav
+        navOverlay.addEventListener('click', function(){ nav.classList.remove('nav-open'); hamburger.classList.remove('is-active'); navOverlay.classList.remove('visible'); });
+        var profileIcon = document.getElementById('profile-icon');
+        var profileDropdown = document.getElementById('profile-dropdown');
+        if (profileIcon && profileDropdown) {
+            profileIcon.addEventListener('click', function(e) {
+                profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+                e.stopPropagation();
+            });
+            document.body.addEventListener('click', function() {
+                profileDropdown.style.display = 'none';
+            });
+        }
+        function updateProfileMenu() {
+            var loggedIn = localStorage.getItem('loggedInUser');
+            var loginMenu = document.getElementById('login-menu');
+            var profileMenu = document.getElementById('profile-menu');
+            var logoutMenu = document.getElementById('logout-menu');
+            if (loginMenu) loginMenu.style.display = loggedIn ? 'none' : 'block';
+            if (profileMenu) profileMenu.style.display = loggedIn ? 'block' : 'none';
+            if (logoutMenu) logoutMenu.style.display = loggedIn ? 'block' : 'none';
+        }
+        updateProfileMenu();
+        var logoutMenuBtn = document.getElementById('logout-menu');
+        if (logoutMenuBtn) {
+            logoutMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                updateProfileMenu();
+                window.location.href = 'login.html';
+            });
+        }
+        window.addEventListener('storage', updateProfileMenu);
+    });
+    </script>
+
+    
+
+    <script>
+    // Admin panel client-side logic (dynamic headers & token validation)
+    (function(){
+        function qs(sel){ return document.querySelector(sel); }
+        function qsa(sel){ return Array.from(document.querySelectorAll(sel)); }
+
+        function getHeaders(){ return { 'Content-Type': 'application/json', 'x-admin-auth': (localStorage.getItem('adminAuth')||'') }; }
+
+        async function checkAdmin(){
+            const statusEl = document.getElementById('admin-status');
+            try{
+                const res = await fetch('/api/test-admin', { headers: getHeaders() });
+                if (!res.ok) { statusEl.textContent = 'Gagal mengecek token'; statusEl.style.color = '#e55'; return false; }
+                const j = await res.json();
+                if (j && j.ok) { statusEl.textContent = 'Token valid'; statusEl.style.color = 'green'; return true; }
+                statusEl.textContent = 'Token tidak valid'; statusEl.style.color = '#e55'; return false;
+            } catch(err){ statusEl.textContent = 'Tidak dapat mengecek token'; statusEl.style.color = '#e55'; return false; }
+        }
+
+        // Tab switching
+        qsa('.tab-btn').forEach(btn => btn.addEventListener('click', () => {
+            qsa('.tab-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            const tab = btn.getAttribute('data-tab');
+            qsa('.admin-tab').forEach(t=>t.style.display='none');
+            qs('#tab-' + tab).style.display = 'block';
+            // load content for the tab
+            if (tab === 'members') loadMembers();
+            if (tab === 'articles') loadArticles();
+            if (tab === 'gallery') loadAlbums();
+            if (tab === 'events') loadEvents();
+            if (tab === 'posts') loadPosts();
+        }));
+
+        // Helpers to show simple lists
+        function renderList(containerSel, items, renderItem){
+            const container = qs(containerSel);
+            container.innerHTML = '';
+            if (!items || items.length === 0) { container.innerHTML = '<p>Tidak ada data.</p>'; return; }
+            const ul = document.createElement('div');
+            items.forEach(it => { const el = renderItem(it); ul.appendChild(el); });
+            container.appendChild(ul);
+        }
+
+        // Members
+        async function loadMembers(){
+            const out = qs('#members-list'); out.innerHTML = 'Memuat...';
+            try{
+                const res = await fetch('/api/admin/users', { headers: getHeaders() });
+                if (res.status === 401 || res.status === 403) { out.innerText = 'Unauthorized: masukkan admin token di atas.'; return; }
+                if (!res.ok) { const t = await res.text(); throw new Error(t || res.statusText); }
+                const users = await res.json();
+                renderList('#members-list', users, user => {
+                    const d = document.createElement('div'); d.className='admin-item';
+                    d.innerHTML = `<div><label><input type="checkbox" class="member-checkbox" value="${user.email}" /> <strong>${user.name}</strong> <span>&lt;${user.email}&gt;</span></label><div class="member-points">Poin: ${user.points||0}</div></div>
+                        <div><button class="btn-delete" data-email="${user.email}">Hapus</button>
+                        <button class="btn-add-points" data-email="${user.email}">Tambah Poin</button></div>`;
+                    d.querySelector('.btn-delete').addEventListener('click', async ()=>{
+                        if (!confirm('Hapus user ini?')) return;
+                        const r = await fetch('/api/admin/users/delete/' + encodeURIComponent(user.email), { method: 'DELETE', headers: getHeaders() });
+                        if (r.ok) loadMembers(); else alert('Gagal menghapus user');
+                    });
+                    d.querySelector('.btn-add-points').addEventListener('click', async ()=>{
+                        const add = prompt('Masukkan jumlah poin yang ingin ditambahkan untuk ' + user.email + ':', '10');
+                        if (!add) return;
+                        const r = await fetch('/api/admin/users/update/' + encodeURIComponent(user.email), { method: 'POST', headers: getHeaders(), body: JSON.stringify({ points: (user.points||0) + parseInt(add) }) });
+                        if (r.ok) loadMembers(); else alert('Gagal menambahkan poin');
+                    });
+                    return d;
+                });
+            }catch(err){ out.innerText = 'Gagal memuat members: ' + err.message; }
+        }
+
+        // Articles
+        async function loadArticles(){
+            const out = qs('#articles-list'); out.innerHTML = 'Memuat...';
+            try{
+                const res = await fetch('/api/admin/articles', { headers: getHeaders() });
+                if (res.status === 401 || res.status === 403) { out.innerText = 'Unauthorized: masukkan admin token di atas.'; return; }
+                if (!res.ok) { const t = await res.text(); throw new Error(t || res.statusText); }
+                const list = await res.json();
+                renderList('#articles-list', list, a => {
+                    const d = document.createElement('div'); d.className='admin-item';
+                    d.innerHTML = `<strong>${a.title || a.id}</strong> <small>${a.date||''}</small> <button class="btn-delete" data-id="${a.id}">Hapus</button>`;
+                    d.querySelector('.btn-delete').addEventListener('click', async ()=>{
+                        if (!confirm('Hapus artikel ini?')) return;
+                        const r = await fetch('/api/admin/articles/delete/' + a.id, { method: 'DELETE', headers: getHeaders() });
+                        if (r.ok) loadArticles(); else alert('Gagal menghapus artikel');
+                    });
+                    return d;
+                });
+            }catch(err){ out.innerText = 'Gagal memuat articles: ' + err.message; }
+        }
+
+        // Albums (gallery)
+        async function loadAlbums(){
+            const out = qs('#albums-list'); out.innerHTML = 'Memuat...';
+            try{
+                const res = await fetch('/api/admin/albums', { headers: getHeaders() });
+                if (res.status === 401 || res.status === 403) { out.innerText = 'Unauthorized: masukkan admin token di atas.'; return; }
+                if (!res.ok) { const t = await res.text(); throw new Error(t || res.statusText); }
+                const list = await res.json();
+                renderList('#albums-list', list, a => {
+                    const d = document.createElement('div'); d.className='admin-item';
+                    d.innerHTML = `<strong>${a.title || a.id}</strong> <small>${(a.photos||[]).length} foto</small> <button class="btn-delete" data-id="${a.id}">Hapus</button>`;
+                    d.querySelector('.btn-delete').addEventListener('click', async ()=>{
+                        if (!confirm('Hapus album ini?')) return;
+                        const r = await fetch('/api/admin/albums/delete/' + a.id, { method: 'DELETE', headers: getHeaders() });
+                        if (r.ok) loadAlbums(); else alert('Gagal menghapus album');
+                    });
+                    return d;
+                });
+            }catch(err){ out.innerText = 'Gagal memuat albums: ' + err.message; }
+        }
+
+        // Events
+        async function loadEvents(){
+            const out = qs('#events-list'); out.innerHTML = 'Memuat...';
+            try{
+                const res = await fetch('/api/admin/events', { headers: getHeaders() });
+                if (res.status === 401 || res.status === 403) { out.innerText = 'Unauthorized: masukkan admin token di atas.'; return; }
+                if (!res.ok) { const t = await res.text(); throw new Error(t || res.statusText); }
+                const list = await res.json();
+                renderList('#events-list', list, e => {
+                    const d = document.createElement('div'); d.className='admin-item';
+                    d.innerHTML = `<strong>${e.title || e.id}</strong> <small>${e.date||''}</small> <button class="btn-delete" data-id="${e.id}">Hapus</button>`;
+                    d.querySelector('.btn-delete').addEventListener('click', async ()=>{
+                        if (!confirm('Hapus event ini?')) return;
+                        const r = await fetch('/api/admin/events/delete/' + e.id, { method: 'DELETE', headers: getHeaders() });
+                        if (r.ok) loadEvents(); else alert('Gagal menghapus event');
+                    });
+                    return d;
+                });
+            }catch(err){ out.innerText = 'Gagal memuat events: ' + err.message; }
+        }
+
+        // Posts
+        async function loadPosts(){
+            const out = qs('#posts-list'); out.innerHTML = 'Memuat...';
+            try{
+                const res = await fetch('/api/admin/posts', { headers: getHeaders() });
+                if (res.status === 401 || res.status === 403) { out.innerText = 'Unauthorized: masukkan admin token di atas.'; return; }
+                if (!res.ok) { const t = await res.text(); throw new Error(t || res.statusText); }
+                const list = await res.json();
+                renderList('#posts-list', list, p => {
+                    const d = document.createElement('div'); d.className='admin-item';
+                    d.innerHTML = `<strong>${p.authorName || p.authorId}</strong> <div>${(p.content||'').slice(0,120)}</div> <button class="btn-delete" data-id="${p.id}">Hapus</button>`;
+                    d.querySelector('.btn-delete').addEventListener('click', async ()=>{
+                        if (!confirm('Hapus postingan ini?')) return;
+                        const r = await fetch('/api/admin/posts/delete/' + p.id, { method: 'DELETE', headers: getHeaders() });
+                        if (r.ok) loadPosts(); else alert('Gagal menghapus postingan');
+                    });
+                    return d;
+                });
+            }catch(err){ out.innerText = 'Gagal memuat posts: ' + err.message; }
+        }
+
+        // Auto-load members tab on open and wire forms
+        document.addEventListener('DOMContentLoaded', function(){
+            // admin token controls
+            const input = qs('#admin-pass-input');
+            const saveBtn = qs('#admin-save-btn');
+            const clearBtn = qs('#admin-clear-btn');
+            const status = qs('#admin-status');
+            input.value = localStorage.getItem('adminAuth') || '';
+            saveBtn.addEventListener('click', async ()=>{ localStorage.setItem('adminAuth', input.value || ''); const ok = await checkAdmin(); if (ok) { loadMembers(); loadArticles(); loadAlbums(); loadEvents(); loadPosts(); } });
+            clearBtn.addEventListener('click', ()=>{ localStorage.removeItem('adminAuth'); input.value=''; status.textContent='Token not set'; status.style.color=''; document.getElementById('members-list').innerHTML=''; document.getElementById('articles-list').innerHTML=''; document.getElementById('albums-list').innerHTML=''; document.getElementById('events-list').innerHTML=''; document.getElementById('posts-list').innerHTML=''; });
+
+            // wire create forms
+            const articleForm = qs('#create-article-form');
+                if (articleForm) articleForm.addEventListener('submit', async (e)=>{
+                e.preventDefault();
+                const fd = new FormData(articleForm); const body = Object.fromEntries(fd.entries());
+                // prepare imageUrls as array if provided
+                if (body.imageUrls) body.imageUrls = body.imageUrls.split('\n').map(s=>s.trim()).filter(Boolean);
+                // if publishDate provided, attach as date
+                if (body.publishDate) body.date = body.publishDate; else body.date = new Date().toISOString();
+                const r = await fetch('/api/admin/articles/create', { method: 'POST', headers: getHeaders(), body: JSON.stringify(body) });
+                if (r.ok) { alert('Artikel dibuat'); articleForm.reset(); loadArticles(); } else { const t=await r.text(); alert('Gagal membuat artikel: '+t); }
+            });
+
+            const eventForm = qs('#create-event-form');
+            if (eventForm) eventForm.addEventListener('submit', async (e)=>{
+                e.preventDefault(); const fd = new FormData(eventForm); const body = Object.fromEntries(fd.entries());
+                const r = await fetch('/api/admin/events/create', { method: 'POST', headers: getHeaders(), body: JSON.stringify(body) });
+                if (r.ok) {
+                    alert('Event dibuat');
+                    eventForm.reset();
+                    // clear preview
+                    if (eventPreviewImg) eventPreviewImg.src = '';
+                    if (eventPreviewWrap) eventPreviewWrap.style.display = 'none';
+                    loadEvents();
+                } else alert('Gagal membuat event');
+            });
+
+
+            // Event image preview
+            const eventImageInput = qs('#create-event-form input[name="imageUrl"]');
+            const eventPreviewWrap = qs('#event-image-preview');
+            const eventPreviewImg = qs('#event-image-preview-img');
+            if (eventImageInput) {
+                eventImageInput.addEventListener('input', function(){
+                    const v = this.value.trim();
+                    if (v) {
+                        eventPreviewImg.src = v;
+                        eventPreviewWrap.style.display = 'block';
+                    } else {
+                        eventPreviewImg.src = '';
+                        eventPreviewWrap.style.display = 'none';
+                    }
+                });
+            }
+
+            const albumForm = qs('#create-album-form');
+            if (albumForm) albumForm.addEventListener('submit', async (e)=>{
+                e.preventDefault(); const fd = new FormData(albumForm); const body = Object.fromEntries(fd.entries());
+                const r = await fetch('/api/admin/albums/create', { method: 'POST', headers: getHeaders(), body: JSON.stringify(body) });
+                if (r.ok) { alert('Album dibuat'); albumForm.reset(); loadAlbums(); } else alert('Gagal membuat album');
+            });
+
+            const photosForm = qs('#add-photos-form');
+            if (photosForm) photosForm.addEventListener('submit', async (e)=>{
+                e.preventDefault();
+                const albumId = photosForm.querySelector('input[name="albumId"]').value;
+                const rows = Array.from(document.querySelectorAll('#photo-rows .photo-row'));
+                const photos = rows.map(r=>({ imageUrl: r.querySelector('input[name="imageUrl"]').value.trim(), caption: r.querySelector('input[name="caption"]').value.trim() })).filter(p=>p.imageUrl);
+                const obj = { albumId, photos };
+                const r = await fetch('/api/photos/add', { method: 'POST', headers: getHeaders(), body: JSON.stringify(obj) });
+                if (r.ok) { alert('Foto ditambahkan'); photosForm.reset(); // remove extra rows, keep one
+                    const rows2 = document.querySelectorAll('#photo-rows .photo-row'); rows2.forEach((rr,i)=>{ if(i>0) rr.remove(); else { rr.querySelector('input[name="imageUrl"]').value=''; rr.querySelector('input[name="caption"]').value=''; } });
+                    loadAlbums(); } else { const t = await r.text(); alert('Gagal menambahkan foto: '+t); }
+            });
+
+            // add-photo-row button handler
+            const addRowBtn = qs('#add-photo-row');
+            if (addRowBtn) addRowBtn.addEventListener('click', ()=>{
+                const container = qs('#photo-rows');
+                const div = document.createElement('div'); div.className='photo-row';
+                div.innerHTML = '<input name="imageUrl" placeholder="Image URL" /> <input name="caption" placeholder="Caption (optional)" />';
+                container.appendChild(div);
+            });
+
+            // bulk add points handler
+            const bulkBtn = qs('#bulk-add-points');
+            if (bulkBtn) bulkBtn.addEventListener('click', async ()=>{
+                const selected = Array.from(document.querySelectorAll('.member-checkbox:checked')).map(cb=>cb.value);
+                const val = parseInt(qs('#bulk-points-value').value) || 0;
+                if (!selected.length) return alert('Pilih member terlebih dahulu');
+                const r = await fetch('/api/award-points', { method: 'POST', headers: getHeaders(), body: JSON.stringify({ emails: selected, points: val }) });
+                if (r.ok) { alert('Poin ditambahkan'); loadMembers(); } else { const t = await r.text(); alert('Gagal menambahkan poin: '+t); }
+            });
+
+            // initial token check and load
+            (async ()=>{ const ok = await checkAdmin(); if (ok) { loadMembers(); loadArticles(); loadAlbums(); loadEvents(); loadPosts(); } })();
+        });
+    })();
+    </script>
 
 </body>
 </html>

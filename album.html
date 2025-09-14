@@ -12,10 +12,16 @@
 
     <!-- Header dibuat transparan agar berada di atas gambar hero -->
     <header class="main-header transparent-header">
-        <div class="header-logo"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
-        <nav class="main-nav">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu" style="position:absolute;left:18px;top:18px;z-index:1001;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-logo" style="margin-left:48px;"><a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a></div>
+        <nav class="main-nav" id="main-nav">
              <ul>
                 <li><a href="gallery.html">KEMBALI KE SEMUA ALBUM</a></li>
+                <li><a href="feed.html">FEED</a></li>
             </ul>
         </nav>
     </header>
@@ -30,6 +36,12 @@
 
     <!-- Grid untuk menampilkan foto-foto di dalam album -->
     <main id="gallery-grid" class="gallery-grid-fullwidth">
+        <button class="back-to-gallery floating-back" id="back-to-gallery" aria-label="Kembali ke Gallery">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="13" fill="rgba(0,0,0,0.5)" stroke="#E59500" stroke-width="2"/>
+                <path d="M16.5 9L12 14L16.5 19" stroke="#E59500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
         <p style="text-align: center; color: white; padding: 50px;">Memuat foto...</p>
     </main>
 
@@ -45,5 +57,19 @@
     </div>
 
     <script src="js/gallery.js"></script>
+    <script>
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburger-menu');
+        var nav = document.getElementById('main-nav');
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                nav.classList.toggle('nav-open');
+                hamburger.classList.toggle('is-active');
+            });
+        }
+    });
+    </script>
 </body>
 </html>

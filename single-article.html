@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
-<body class="no-scroll"> <!-- Tambahkan class no-scroll ke body -->
+<body>
 
     <div class="background-gradient"></div>
 
@@ -16,13 +16,19 @@
         <div class="header-logo">
             <a href="index.html"><img src="assets/logo-header.png" alt="Logo Ruang 143"></a>
         </div>
-        <nav class="main-nav">
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav" id="main-nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="events.html">PLAN</a></li>
+                <li><a href="events.html">Plans</a></li>
                 <li><a href="articles.html" class="active">ARTICLES</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="feed.html">FEED</a></li>
                 <li><a href="login.html">MEMBER</a></li>
             </ul>
         </nav>
@@ -35,6 +41,19 @@
     <!-- === STRUKTUR LAYOUT BARU UNTUK SCROLLING  === -->
     <!-- ============================================= -->
     <main class="page-container article-page-layout fixed-layout">
+        <button class="back-to-articles floating-back" id="back-to-articles" aria-label="Kembali ke Daftar Artikel">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="13" fill="rgba(0,0,0,0.5)" stroke="#E59500" stroke-width="2"/>
+                <path d="M16.5 9L12 14L16.5 19" stroke="#E59500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="scroll-to-top floating-top" id="scroll-to-top" aria-label="Kembali ke Atas" style="display:none;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="13" fill="rgba(0,0,0,0.5)" stroke="#E59500" stroke-width="2"/>
+                <path d="M9 16.5L14 12L19 16.5" stroke="#E59500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        </button>
         
         <!-- Kolom Utama: Konten Artikel -->
         <div class="single-article-main scrollable-content"> <!-- Tambahkan class scrollable -->
@@ -67,5 +86,38 @@
 
     </main>
     <script src="js/articles.js"></script>
+    <script>
+    // Hamburger, Back button, Scroll to top logic
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hamburger menu
+        var hamburger = document.getElementById('hamburger-menu');
+        var nav = document.getElementById('main-nav');
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                nav.classList.toggle('nav-open');
+                hamburger.classList.toggle('is-active');
+            });
+        }
+        // Back to articles
+        var backBtn = document.getElementById('back-to-articles');
+        if (backBtn) {
+            backBtn.addEventListener('click', function() {
+                window.location.href = 'articles.html';
+            });
+        }
+        // Scroll to top
+        var scrollBtn = document.getElementById('scroll-to-top');
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > window.innerHeight * 0.7) {
+                scrollBtn.style.display = 'flex';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        });
+    });
+    </script>
 </body>
 </html>

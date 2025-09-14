@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             if (response.ok) {
                 localStorage.setItem('loggedInUser', result.email);
-                window.location.href = 'profile.html';
+                window.location.href = 'feed.html';
             } else {
                 feedbackMessageEl.textContent = result.message;
                 feedbackMessageEl.className = 'feedback error';
@@ -198,5 +198,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 feedbackEl.className = 'feedback error';
             }
         });
+    }
+
+    // --- Render Header Avatar ---
+    const headerAvatar = document.getElementById('header-avatar');
+    const loggedInUserEmailForAvatar = localStorage.getItem('loggedInUser');
+    if (headerAvatar && loggedInUserEmailForAvatar) {
+        fetch(`/api/profile/${loggedInUserEmailForAvatar}`)
+            .then(res => res.json())
+            .then(user => {
+                if (user.avatarUrl && user.avatarUrl.trim() !== "") {
+                    headerAvatar.innerHTML = `<img src="${user.avatarUrl}" alt="avatar" class="header-avatar-img">`;
+                } else if (user.name) {
+                    const initials = user.name.split(' ').map(word => word[0]).join('').toUpperCase();
+                    headerAvatar.textContent = initials;
+                } else {
+                    headerAvatar.textContent = '';
+                }
+            })
+            .catch(err => console.error('Error fetching profile for header avatar:', err));
     }
 });

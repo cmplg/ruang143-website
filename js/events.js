@@ -50,8 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         return `
                         <div class="plan-card">
                             <h4>${event.title}</h4>
-                            <div class="plan-card-body">${formattedDescription}</div>
                             <span class="plan-date">Direncanakan: ${new Date(event.date).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}</span>
+                            ${event.imageUrl ? `<img src="${event.imageUrl}" alt="${event.title}" class="roadmap-flyer">` : ''}
+                            <div class="plan-card-body">${formattedDescription}</div>
                         </div>
                         `;
                     }).join('');
